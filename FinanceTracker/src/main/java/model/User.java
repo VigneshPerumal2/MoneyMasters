@@ -1,10 +1,63 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private String name;
     private int age;
     private String gender, emailId, password, location;
     private long phoneNumber;
+
+    private ArrayList<Account> userAccounts;
+
+    private Budget budget;
+
+    public User(String name, int age, String gender, String emailId, String password, String location, long phoneNumber, ArrayList<Account> userAccounts, Budget budget) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.emailId = emailId;
+        this.password = password;
+        this.location = location;
+        this.phoneNumber = phoneNumber;
+        this.userAccounts = userAccounts;
+        this.budget = budget;
+    }
+
+    public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                ", emailId='" + emailId + '\'' +
+                ", password='" + password + '\'' +
+                ", location='" + location + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", userAccounts=" + userAccounts +
+                ", budget=" + budget +
+                '}';
+    }
+
+    public ArrayList<Account> getUserAccounts() {
+        return userAccounts;
+    }
+
+    public void setUserAccounts(ArrayList<Account> userAccounts) {
+        this.userAccounts = userAccounts;
+    }
+
+    public Budget getBudget() {
+        return budget;
+    }
+
+    public void setBudget(Budget budget) {
+        this.budget = budget;
+    }
 
     public String getName() {
         return name;

@@ -11,6 +11,28 @@ public class Transaction {
 
     private String note;
 
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "amount=" + amount +
+                ", account=" + account +
+                ", transactionDate=" + transactionDate +
+                ", category='" + category + '\'' +
+                ", note='" + note + '\'' +
+                '}';
+    }
+
+    public Transaction(double amount, Account account, Date transactionDate, String category, String note) {
+        this.amount = amount;
+        this.account = account;
+        this.transactionDate = transactionDate;
+        this.category = category;
+        this.note = note;
+    }
+
+    public Transaction() {
+    }
+
     public double getAmount() {
         return amount;
     }

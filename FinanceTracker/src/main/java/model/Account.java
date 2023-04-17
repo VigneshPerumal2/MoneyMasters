@@ -6,6 +6,27 @@ public class Account {
     private double amount;
     private String note;
 
+    public Account(String accountName, String accountType, double amount, String note) {
+        this.accountName = accountName;
+        this.accountType = accountType;
+        this.amount = amount;
+        this.note = note;
+    }
+
+    public Account() {
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountName='" + accountName + '\'' +
+                ", accountType='" + accountType + '\'' +
+                ", amount=" + amount +
+                ", note='" + note + '\'' +
+                '}';
+    }
+
+
     public String getAccountName() {
         return accountName;
     }
