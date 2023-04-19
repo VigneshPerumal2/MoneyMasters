@@ -1,9 +1,12 @@
 package com.example.financetracker;
 
+import directories.UserDirectory;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.text.Text;
+
+import java.nio.file.FileSystemNotFoundException;
 
 public class DashboardController {
 
@@ -16,8 +19,19 @@ public class DashboardController {
     @FXML
     private Text totalBalanceText;
 
+    public UserDirectory userDirectory ;
+    String username;
+
+    public DashboardController(UserDirectory userDirectory,String username) {
+        this.userDirectory = userDirectory;
+        this.username = username;
+        System.out.println("DashboardController->"+userDirectory+username);
+    }
+
+
+
     @FXML
-    public void initialize() {
+    public void initialize(UserDirectory userDirectory) {
         // Fetch the total balance from the MySQL server
         updateTotalBalance();
 
@@ -26,6 +40,8 @@ public class DashboardController {
 //        budgetButton.setOnAction(e -> showBudget());
 //        notesButton.setOnAction(e -> showNotes());
     }
+
+
 
     private void updateTotalBalance() {
         // TODO: Fetch the total balance from the MySQL server and update the totalBalanceText

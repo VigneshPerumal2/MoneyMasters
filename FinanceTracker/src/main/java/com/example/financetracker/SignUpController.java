@@ -48,7 +48,7 @@ public class SignUpController implements Initializable{
 				
 				if(!tf_username.getText().trim().isEmpty() && !tf_password.getText().trim().isEmpty())
 				{
-					DbUtil.signUpUser(event, tf_username.getText(), tf_password.getText(), toggleName);
+//					DbUtil.signUpUser(event, tf_username.getText(), tf_password.getText(), toggleName);
 				}
 				else
 				{
@@ -64,7 +64,7 @@ public class SignUpController implements Initializable{
 			
 			@Override
 			public void handle(ActionEvent event) {
-				DbUtil.changeScene(event, "sample.fxml", "Log in!", null, null);
+//				DbUtil.changeScene(event, "sample.fxml", "Log in!", null, null);
 				
 			}
 		});

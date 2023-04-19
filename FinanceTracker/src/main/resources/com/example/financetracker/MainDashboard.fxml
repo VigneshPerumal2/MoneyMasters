@@ -93,14 +93,15 @@
                            </children></AnchorPane>
                      </content>
                 </Tab>
-                  <Tab text="Notes">
+                  <Tab text="Transactions">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #FF9600;">
                            <children>
                               <TableView layoutY="1.0" prefHeight="294.0" prefWidth="564.0">
                                 <columns>
                                   <TableColumn prefWidth="75.0" text="Date" />
-                                  <TableColumn prefWidth="487.9999694824219" text="Note on Transaction" />
+                                  <TableColumn prefWidth="143.0" text="Amount" />
+                                    <TableColumn prefWidth="833.0000305175781" text="Note on Transaction" />
                                 </columns>
                               </TableView>
                            </children>

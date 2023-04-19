@@ -1,5 +1,7 @@
 package com.example.financetracker;
 
+import directories.TransactionDirectory;
+import directories.UserDirectory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,6 +15,8 @@ import java.util.ResourceBundle;
 
 public class LoggedInController implements Initializable{
 
+	private  UserDirectory userDirectory;
+	private  TransactionDirectory transactionDirectory;
 	@FXML
     private Button button_logout;
 
@@ -22,8 +26,13 @@ public class LoggedInController implements Initializable{
 	private Button button_financeTracker;
     @FXML
     private Label label_welcome;
-	 
-	 @Override
+
+	public LoggedInController(UserDirectory userDirectory, TransactionDirectory transactionDirectory) {
+		this.userDirectory = userDirectory;
+		this.transactionDirectory = transactionDirectory;
+	}
+
+	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		 
@@ -33,7 +42,7 @@ public class LoggedInController implements Initializable{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				DbUtil.changeScene(event, "Sample.fxml", "log in!", null, null);
+//				DbUtil.changeScene(event, "LoginPage.fxml", "log in!", null, null);
 			}
 			 
 		 });
@@ -42,7 +51,8 @@ public class LoggedInController implements Initializable{
 		 button_financeTracker.setOnAction(new EventHandler<ActionEvent>() {
 			 @Override
 			 public void handle(ActionEvent event) {
-				 DbUtil.changeScene(event,"financetracker.fxml","log in",null,null);
+
+//				 DbUtil.changeScene(event,"financetracker.fxml","log in",null,null);
 			 }
 		 });
 	}

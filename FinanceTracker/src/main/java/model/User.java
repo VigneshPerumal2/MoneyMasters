@@ -1,5 +1,8 @@
 package model;
 
+import directories.TransactionDirectory;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +14,11 @@ public class User {
 
     private ArrayList<Account> userAccounts;
 
+    private TransactionDirectory transactionDirectory;
+
     private Budget budget;
 
-    public User(String name, int age, String gender, String emailId, String password, String location, long phoneNumber, ArrayList<Account> userAccounts, Budget budget) {
+    public User(String name, int age, String gender, String emailId, String password, String location, long phoneNumber, ArrayList<Account> userAccounts, Budget budget, TransactionDirectory transactionDirectory) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -23,6 +28,7 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.userAccounts = userAccounts;
         this.budget = budget;
+        this.transactionDirectory=transactionDirectory;
     }
 
     public User() {
@@ -39,6 +45,7 @@ public class User {
                 ", location='" + location + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 ", userAccounts=" + userAccounts +
+                ", transactionDirectory=" + transactionDirectory +
                 ", budget=" + budget +
                 '}';
     }

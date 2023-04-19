@@ -25,7 +25,7 @@ public class FinancetrackerController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 // TODO Auto-generated method stub
-                DbUtil.changeScene(event, "Sample.fxml", "log in!", null, null);
+//                DbUtil.changeScene(event, "LoginPage.fxml", "log in!", null, null);
             }
 
         });

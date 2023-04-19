@@ -42,6 +42,15 @@ public class UserDirectory {
     public void deleteAll(){
         history.removeAll(history);
     }
+
+    public boolean login(String emailId, String password){
+        for(User user: history){
+            if(user.getEmailId().equals(emailId) && user.getPassword().equals(password)){
+                return true;
+            }
+        }
+        return false;
+    }
     @Override
     public String toString() {
         return "UserDirectory{" + "history=" + history + '}';
