@@ -11,6 +11,7 @@ module com.example.financetracker {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires charm.glisten;
 
     opens com.example.financetracker to javafx.fxml;
     exports com.example.financetracker;

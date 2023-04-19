@@ -43,13 +43,13 @@ public class UserDirectory {
         history.removeAll(history);
     }
 
-    public boolean login(String emailId, String password){
+    public User login(String emailId, String password){
         for(User user: history){
             if(user.getEmailId().equals(emailId) && user.getPassword().equals(password)){
-                return true;
+                return user;
             }
         }
-        return false;
+        return null;
     }
     @Override
     public String toString() {

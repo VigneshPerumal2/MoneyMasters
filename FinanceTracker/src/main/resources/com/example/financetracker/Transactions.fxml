@@ -77,8 +77,8 @@
                               <TextField layoutX="142.0" layoutY="121.0" prefHeight="27.0" prefWidth="135.0" />
                               <TextField layoutX="141.0" layoutY="158.0" prefHeight="27.0" prefWidth="136.0" />
                               <TextField layoutX="142.0" layoutY="199.0" prefHeight="27.0" prefWidth="136.0" />
-                              <Button layoutX="90.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="CANCEL" />
-                              <Button layoutX="271.0" layoutY="286.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="SAVE" textFill="#7c2b2b" />
+                              <Button fx:id="cancelButton" layoutX="90.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="CANCEL" />
+                              <Button fx:id="saveButton" layoutX="271.0" layoutY="286.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="SAVE" textFill="#7c2b2b" />
                            </children>
                         </AnchorPane>
                      </content>

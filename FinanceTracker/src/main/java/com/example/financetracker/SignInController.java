@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+import model.User;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,6 +23,8 @@ public class SignInController implements Initializable{
 
 
     private  Stage stage;
+
+    User user;
     @FXML
     private Button button_login;
 
@@ -36,13 +38,15 @@ public class SignInController implements Initializable{
     @FXML
     private Button button_signup;
 
-    public SignInController(UserDirectory userDirectory, Stage stage) {
+    public SignInController(UserDirectory userDirectory, User user,Stage stage) {
         this.userDirectory = userDirectory;
         this.stage = stage;
+        this.user = user;
     }
-    private void showDashboard(Stage stage) throws IOException {
+    private void  showDashboard(Stage stage,User user) throws IOException {
+        this.user= user;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainDashboard.fxml"));
-        DashboardController controller = new DashboardController(userDirectory,"Vignesh");
+        DashboardController controller = new DashboardController(userDirectory,user,stage);
 
         loader.setController(controller);
 
@@ -62,13 +66,13 @@ public class SignInController implements Initializable{
 
             @Override
             public void handle(ActionEvent event) {
-
-                if(userDirectory.login(tf_username.getText(), tf_password.getText())) {
-                    try {
-                        showDashboard(stage);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    User user = userDirectory.login(tf_username.getText(), tf_password.getText());
+               if(user!=null){
+                   try {
+                       showDashboard(stage,user);
+                   } catch (IOException e) {
+                       e.printStackTrace();
+                   }
                 }
 
             }
