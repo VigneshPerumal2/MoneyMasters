@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class FinanaceTracker extends Application {
 
     static UserDirectory userDirectory ;
-
+    static User user;
 
 
 
@@ -29,7 +29,7 @@ public class FinanaceTracker extends Application {
 
     private void showLogInController(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
-        SignInController controller = new SignInController(userDirectory,stage);
+        SignInController controller = new SignInController(userDirectory,user,stage);
 
         loader.setController(controller);
 
@@ -45,7 +45,7 @@ public class FinanaceTracker extends Application {
 
     private void showDashboard(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainDashboard.fxml"));
-        DashboardController controller = new DashboardController(userDirectory,"Vignesh");
+        DashboardController controller = new DashboardController(userDirectory,user,stage);
 
         loader.setController(controller);
 
