@@ -11,6 +11,12 @@ public class Transaction {
 
     private String note;
 
+    private String transactionType;
+
+    public String getTransactionType() {
+        return transactionType;
+    }
+
     @Override
     public String toString() {
         return "Transaction{" +
@@ -19,16 +25,23 @@ public class Transaction {
                 ", transactionDate=" + transactionDate +
                 ", category='" + category + '\'' +
                 ", note='" + note + '\'' +
+                ", transactionType='" + transactionType + '\'' +
                 '}';
     }
 
-    public Transaction(double amount, Account account, Date transactionDate, String category, String note) {
+    public Transaction(double amount, Account account, Date transactionDate, String category, String note, String transactionType) {
         this.amount = amount;
         this.account = account;
         this.transactionDate = transactionDate;
         this.category = category;
         this.note = note;
+        this.transactionType = transactionType;
     }
+
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
+    }
+
 
     public Transaction() {
     }

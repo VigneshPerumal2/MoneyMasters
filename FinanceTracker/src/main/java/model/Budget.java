@@ -2,7 +2,7 @@ package model;
 
 public class Budget {
 
-    private double food, socialLife, seldDevelopment, transportation, culture, household, apparel, beauty, health, education, gift, other, phone;
+    private double food, socialLife, selfDevelopment, transportation, culture, household, apparel, beauty, health, education, gift, other, phone;
 
     public double getFood() {
         return food;
@@ -12,8 +12,8 @@ public class Budget {
         return socialLife;
     }
 
-    public double getSeldDevelopment() {
-        return seldDevelopment;
+    public double getSelfDevelopment() {
+        return selfDevelopment;
     }
 
     public double getTransportation() {
@@ -64,8 +64,8 @@ public class Budget {
         this.socialLife = socialLife;
     }
 
-    public void setSeldDevelopment(double seldDevelopment) {
-        this.seldDevelopment = seldDevelopment;
+    public void setSelfDevelopment(double seldDevelopment) {
+        this.selfDevelopment = selfDevelopment;
     }
 
     public void setTransportation(double transportation) {
@@ -111,7 +111,7 @@ public class Budget {
     public Budget(double food, double socialLife, double seldDevelopment, double transportation, double culture, double household, double apparel, double beauty, double health, double education, double gift, double other, double phone) {
         this.food = food;
         this.socialLife = socialLife;
-        this.seldDevelopment = seldDevelopment;
+        this.selfDevelopment = selfDevelopment;
         this.transportation = transportation;
         this.culture = culture;
         this.household = household;
@@ -132,7 +132,7 @@ public class Budget {
         return "Budget{" +
                 "food=" + food +
                 ", socialLife=" + socialLife +
-                ", seldDevelopment=" + seldDevelopment +
+                ", selfDevelopment=" + selfDevelopment +
                 ", transportation=" + transportation +
                 ", culture=" + culture +
                 ", household=" + household +

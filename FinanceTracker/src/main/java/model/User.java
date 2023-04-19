@@ -31,6 +31,14 @@ public class User {
         this.transactionDirectory=transactionDirectory;
     }
 
+    public TransactionDirectory getTransactionDirectory() {
+        return transactionDirectory;
+    }
+
+    public void setTransactionDirectory(TransactionDirectory transactionDirectory) {
+        this.transactionDirectory = transactionDirectory;
+    }
+
     public User() {
     }
 

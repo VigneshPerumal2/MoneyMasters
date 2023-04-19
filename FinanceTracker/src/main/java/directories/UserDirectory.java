@@ -27,7 +27,6 @@ public class UserDirectory {
     }
 
     public User addNewUser(User user){
-        System.out.println("User Added->"+user);
         history.add(user);
         return user;
     }
@@ -51,6 +50,7 @@ public class UserDirectory {
         }
         return null;
     }
+
     @Override
     public String toString() {
         return "UserDirectory{" + "history=" + history + '}';

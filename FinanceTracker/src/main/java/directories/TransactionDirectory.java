@@ -28,7 +28,6 @@ public class TransactionDirectory {
     }
 
     public Transaction addNewTransaction(Transaction transaction){
-        System.out.println("Transaction Added->"+transaction);
         history.add(transaction);
         return transaction;
     }

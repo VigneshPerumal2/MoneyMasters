@@ -43,7 +43,7 @@
    <right>
       <AnchorPane prefHeight="600.0" prefWidth="602.0" style="-fx-background-color: #E1FAF9;" BorderPane.alignment="CENTER">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#63458a" height="131.0" layoutX="-3.0" layoutY="-52.0" stroke="#ffffff00" strokeType="OUTSIDE" width="613.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#63458a" height="133.0" layoutX="-4.0" layoutY="-53.0" stroke="#ffffff00" strokeType="OUTSIDE" width="613.0" />
             <Text fill="#ffffff66" layoutY="49.0" stroke="#60428600" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard" textAlignment="CENTER" wrappingWidth="597.21630859375">
                <font>
                   <Font size="36.0" />
@@ -65,15 +65,7 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #C2EABA;">
                            <children>
-                              <BarChart layoutX="32.0" layoutY="48.0" prefHeight="158.0" prefWidth="190.0" title="Income">
-                                <xAxis>
-                                  <CategoryAxis side="BOTTOM" />
-                                </xAxis>
-                                <yAxis>
-                                  <NumberAxis side="LEFT" />
-                                </yAxis>
-                              </BarChart>
-                              <BarChart layoutX="272.0" layoutY="48.0" prefHeight="158.0" prefWidth="190.0" title="Expense">
+                              <BarChart fx:id="chartExpense" layoutY="-2.0" prefHeight="298.0" prefWidth="566.0" title="Expense">
                                  <xAxis>
                                     <CategoryAxis side="BOTTOM" />
                                  </xAxis>

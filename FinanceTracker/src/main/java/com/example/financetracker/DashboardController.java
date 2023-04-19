@@ -2,6 +2,8 @@ package com.example.financetracker;
 
 import directories.TransactionDirectory;
 import directories.UserDirectory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,15 +11,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Transaction;
 import model.User;
 
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.FileSystemNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
@@ -32,6 +42,13 @@ public class DashboardController implements Initializable {
     @FXML
     private Text totalBalanceText;
 
+    @FXML
+    private BarChart<String, Number> chartExpense;
+
+
+    @FXML
+    private BarChart<String, Number> chartIncome;
+
     public UserDirectory userDirectory ;
 
     public User user;
@@ -43,9 +60,57 @@ public class DashboardController implements Initializable {
         this.stage=stage;
         this.user= user;
         System.out.println("DashboardController->"+userDirectory+username);
+
     }
 
+    public void showExpenseChart(){
 
+        // create a map to store the expenses by category
+        Map<String, Double> expensesByCategory = new HashMap<>();
+        expensesByCategory.put("Food", 0.0);
+        expensesByCategory.put("Social Life", 0.0);
+        expensesByCategory.put("Self Development", 0.0);
+        expensesByCategory.put("Transportation", 0.0);
+        expensesByCategory.put("Culture", 0.0);
+        expensesByCategory.put("Household", 0.0);
+        expensesByCategory.put("Apparel", 0.0);
+        expensesByCategory.put("Beauty", 0.0);
+        expensesByCategory.put("Health", 0.0);
+        expensesByCategory.put("Education", 0.0);
+        expensesByCategory.put("Gift", 0.0);
+        expensesByCategory.put("Other", 0.0);
+        expensesByCategory.put("Phone", 0.0);
+
+        for(Transaction transaction: user.getTransactionDirectory().getHistory()){
+            System.out.println(transaction);
+            if(Objects.equals(transaction.getTransactionType(), "Expense")){
+                expensesByCategory.put(transaction.getCategory(),expensesByCategory.get(transaction.getCategory())+transaction.getAmount());
+            }
+        }
+
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        chartExpense.setTitle("Expense Chart");
+        xAxis.setLabel("Category");
+        yAxis.setLabel("Amount");
+        // set the size of the chart
+        chartExpense.setPrefSize(566, 350);
+        chartExpense.setLegendVisible(false);
+
+        // Create a new series for each category
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        for (Map.Entry<String, Double> entry : expensesByCategory.entrySet()) {
+            String category = entry.getKey();
+            Double amount = entry.getValue();
+            series.getData().add(new XYChart.Data<>(category, amount));
+        }
+        series.setName("Expenses");
+
+        // Add series to chart and show stage
+        ObservableList<XYChart.Series<String, Number>> data = FXCollections.observableArrayList(series);
+        chartExpense.setData(data);
+
+    }
 
 
 
@@ -109,6 +174,9 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        showExpenseChart();
+
         transactionButton.setOnAction(
 
                 new EventHandler<ActionEvent>() {
