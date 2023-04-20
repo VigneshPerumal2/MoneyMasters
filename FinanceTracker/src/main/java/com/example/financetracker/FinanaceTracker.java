@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Account;
-import model.Budget;
 import model.Transaction;
 import model.User;
 
@@ -51,7 +50,7 @@ public class FinanaceTracker extends Application {
         TransactionDirectory  transactionDirectory = new TransactionDirectory();
 
 // create a new Account object with some sample values
-        Account account = new Account("Savings Account", "Savings", 5000.0, "Initial deposit");
+        Account account2 = new Account("Checking Account", "Checking", 2500.0, "Paycheck deposit");
 
 // create a SimpleDateFormat object to parse date strings
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -96,7 +95,7 @@ public class FinanaceTracker extends Application {
                 // create a new Transaction object with the parsed data and type
                 transactionDirectory.addNewTransaction(new Transaction(
                                 Double.parseDouble(transactionData[i][3]), // amount
-                        account, // account
+                        account2, // account
                         transactionDate, // transactionDate
                         transactionData[i][1], // category
                         transactionData[i][2], // note
@@ -131,8 +130,24 @@ public class FinanaceTracker extends Application {
 
         userDirectory = new UserDirectory();
 
+        ArrayList<Account> accountList = new ArrayList<>();
 
-        User user = new User("John Doe", 35, "Male", "123", "123", "New York City", 5551234567L, new ArrayList<Account>(), new Budget(),loadTransactionData());
+        Account account1 = new Account("Savings Account", "Savings", 5000.0, "Initial deposit");
+        accountList.add(account1);
+
+        Account account2 = new Account("Checking Account", "Checking", 2500.0, "Paycheck deposit");
+        accountList.add(account2);
+
+        Account account3 = new Account("Credit Card", "Credit", -1000.0, "Monthly payment");
+        accountList.add(account3);
+
+        Account account4 = new Account("Investment Account", "Investment", 10000.0, "Stock purchase");
+        accountList.add(account4);
+
+        Account account5 = new Account("Retirement Account", "Retirement", 50000.0, "401(k) contribution");
+        accountList.add(account5);
+
+        User user = new User("John Doe", 35, "Male", "123", "123", "New York City", 5551234567L, accountList,loadTransactionData());
 
         // Create a new user and loading it into the user directory
         userDirectory.addNewUser(user);

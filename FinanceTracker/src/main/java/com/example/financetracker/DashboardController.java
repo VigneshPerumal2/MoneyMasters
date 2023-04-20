@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Account;
 import model.Transaction;
 import model.User;
 
@@ -40,7 +41,13 @@ public class DashboardController implements Initializable {
     private TabPane tabPane;
 
     @FXML
-    private Text totalBalanceText;
+    private Text txtTotalBalance;
+
+    @FXML
+    private Text txtTotalExpense;
+
+    @FXML
+    private Text txtUserName;
 
     @FXML
     private BarChart<String, Number> chartExpense;
@@ -157,11 +164,34 @@ public class DashboardController implements Initializable {
     }
     private void updateTotalBalance() {
         // TODO: Fetch the total balance from the MySQL server and update the totalBalanceText
+
+        double totalBalance=0;
+        for(Account account:user.getUserAccounts()){
+            totalBalance+=account.getAmount();
+        }
+        if(totalBalance>0){
+            txtTotalBalance.setText(String.valueOf(totalBalance));
+        }
+
+    }
+
+    private void updateTotalExpense() {
+        // TODO: Fetch the total balance from the MySQL server and update the totalBalanceText
         // Example: totalBalanceText.setText(String.valueOf(fetchedBalance));
+        double totalExpense=0;
+        for(Transaction transaction:user.getTransactionDirectory().getHistory()){
+            totalExpense+=transaction.getAmount();
+        }
+
+
+            txtTotalExpense.setText(String.valueOf(totalExpense));
+
+
     }
 
     private void showStats() {
         // TODO: Implement the code for showing the Stats section
+        showExpenseChart();
     }
 
     private void showBudget() {
@@ -176,6 +206,9 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         showExpenseChart();
+        updateTotalBalance();
+        updateTotalExpense();
+        txtUserName.setText(user.getName());
 
         transactionButton.setOnAction(
 

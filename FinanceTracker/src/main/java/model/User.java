@@ -16,9 +16,9 @@ public class User {
 
     private TransactionDirectory transactionDirectory;
 
-    private Budget budget;
 
-    public User(String name, int age, String gender, String emailId, String password, String location, long phoneNumber, ArrayList<Account> userAccounts, Budget budget, TransactionDirectory transactionDirectory) {
+
+    public User(String name, int age, String gender, String emailId, String password, String location, long phoneNumber, ArrayList<Account> userAccounts, TransactionDirectory transactionDirectory) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -27,7 +27,7 @@ public class User {
         this.location = location;
         this.phoneNumber = phoneNumber;
         this.userAccounts = userAccounts;
-        this.budget = budget;
+
         this.transactionDirectory=transactionDirectory;
     }
 
@@ -54,7 +54,6 @@ public class User {
                 ", phoneNumber=" + phoneNumber +
                 ", userAccounts=" + userAccounts +
                 ", transactionDirectory=" + transactionDirectory +
-                ", budget=" + budget +
                 '}';
     }
 
@@ -66,13 +65,7 @@ public class User {
         this.userAccounts = userAccounts;
     }
 
-    public Budget getBudget() {
-        return budget;
-    }
 
-    public void setBudget(Budget budget) {
-        this.budget = budget;
-    }
 
     public String getName() {
         return name;
