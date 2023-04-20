@@ -122,4 +122,5 @@ public class User {
     public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
 }

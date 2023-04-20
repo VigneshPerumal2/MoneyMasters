@@ -4,6 +4,7 @@
  */
 package directories;
 
+import model.Account;
 import model.User;
 
 import java.util.ArrayList;
@@ -51,6 +52,15 @@ public class UserDirectory {
         return null;
     }
 
+
+    public Account getAccount(String accountName, User user){
+        for(Account account: user.getUserAccounts()){
+            if(account.getAccountName().equals(accountName)){
+                return account;
+            }
+        }
+        return null;
+    }
     @Override
     public String toString() {
         return "UserDirectory{" + "history=" + history + '}';
