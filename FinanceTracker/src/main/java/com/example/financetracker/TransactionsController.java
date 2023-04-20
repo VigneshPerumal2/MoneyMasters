@@ -46,6 +46,15 @@ public class TransactionsController implements Initializable {
     private Button buttonTransferSave;
 
     @FXML
+    private Button buttonTransaction;
+
+    @FXML
+    private Button buttonAccount;
+
+    @FXML
+    private Button buttonProfile;
+
+    @FXML
     private ComboBox<String> choiceBoxTransferTo;
 
     @FXML
@@ -152,12 +161,14 @@ public class TransactionsController implements Initializable {
 
     @FXML
     private Label valTransferTo;
+
+
     UserDirectory userDirectory;
     Stage stage;
 
     User user;
 
-    public TransactionsController(UserDirectory userDirectory, User user,Stage stage ) {
+    public TransactionsController(UserDirectory userDirectory, User user, Stage stage) {
         this.userDirectory = userDirectory;
         this.stage = stage;
         this.user = user;
@@ -166,7 +177,7 @@ public class TransactionsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        for(Account userAccount: user.getUserAccounts()){
+        for (Account userAccount : user.getUserAccounts()) {
             choiceboxExpenseAccount.getItems().add(userAccount.getAccountName().toString());
             choiceboxIncomeAcount.getItems().add(userAccount.getAccountName().toString());
             choiceBoxTransferFrom.getItems().add(userAccount.getAccountName().toString());
@@ -193,110 +204,134 @@ public class TransactionsController implements Initializable {
 
             @Override
             public void handle(ActionEvent event) {
-//                if(checkvalidationIncome(valIncomeDescription, valIncomeAmount, valIncomeCategory, valIncomeAccount, valIncomeDate, valIncomeNote)==false)
-//                {
-//
-//                    Alert  alert = new Alert(Alert.AlertType.ERROR);
-//                    alert.setTitle("Error");
-//                    alert.setHeaderText("Error");
-//                    alert.setContentText("Please fill all the fields");
-//                    alert.showAndWait();
-//
-//                    return;
-//                }
-//                else
-//                    {
-                        boolean val=saveIncomeTransaction(userDirectory,user, dateIncome.getValue(), txtIncomeAmount.getText(), txtIncomeDescription.getText(), txtIncomeNote.getText(), choiceboxIncomeCategory.getValue(), choiceboxIncomeAcount.getValue());
-                  //  }
-
+                boolean val = saveIncomeTransaction(userDirectory, user, dateIncome.getValue(), txtIncomeAmount.getText(), txtIncomeDescription.getText(), txtIncomeNote.getText(), choiceboxIncomeCategory.getValue(), choiceboxIncomeAcount.getValue());
             }
         });
 
         buttonSaveExpense.setOnAction(new EventHandler<ActionEvent>() {
-
             @Override
             public void handle(ActionEvent event) {
-               boolean val= saveExpenseTransaction(userDirectory,user, dateExpense.getValue(), txtExpenseAmount.getText(), txtExpenseDescription.getText(), txtExpenseNote.getText(), choiceboxExpenseCategory.getValue(), choiceboxExpenseAccount.getValue());
+                boolean val = saveExpenseTransaction(userDirectory, user, dateExpense.getValue(), txtExpenseAmount.getText(), txtExpenseDescription.getText(), txtExpenseNote.getText(), choiceboxExpenseCategory.getValue(), choiceboxExpenseAccount.getValue());
             }
         });
 
         buttonTransferSave.setOnAction(new EventHandler<ActionEvent>() {
-
             @Override
             public void handle(ActionEvent event) {
-                saveTransferTransaction(userDirectory,user, dateTransfer.getValue(), txtTransferAmount.getText(), txtTransferDescription.getText(), txtTransferNote.getText(), choiceBoxTransferFrom.getValue(), choiceBoxTransferTo.getValue());
+                boolean val = saveTransferTransaction(userDirectory, user, dateTransfer.getValue(), txtTransferAmount.getText(), txtTransferDescription.getText(), txtTransferNote.getText(), choiceBoxTransferFrom.getValue(), choiceBoxTransferTo.getValue());
             }
         });
-//
-//            String incomedescription = txtIncomeDescription.getText();
-//            String incomenote = txtIncomeDescription.getText();
-//            String incomeaccount = choiceboxIncomeAcount.getValue();
-//            String incomecategory = choiceboxIncomeCategory.getValue();
-//            Double amountvalue = Double.parseDouble(txtIncomeAmount.getText());
-//            LocalDate localDate = dateIncome.getValue();
-//            String Note= txtIncomeNote.getText();
-//
-//
-//            @Override
-//            public void handle(ActionEvent event) {
-//                saveTransaction(userDirectory,user, localDate, amountvalue ,incomedescription, incomenote, choiceboxIncomeCategory.getValue(), choiceboxIncomeAcount.getValue());
-//            }
-//        });
+
+        buttonAccount.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Account.fxml"));
+                    AccountController accountController = new AccountController(userDirectory, user, stage,"test");
+                    loader.setController(accountController);
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
 
     }
 
     private boolean checkvalidationIncome(Label valIncomeDescription, Label valIncomeAmount, Label valIncomeCategory, Label valIncomeAccount, Label valIncomeDate, Label valIncomeNote) {
         boolean flag = true;
-        if(txtIncomeDescription.getText().isEmpty()){
-           valIncomeDescription.setText("Description is required");
+        if (txtIncomeDescription.getText().isEmpty()) {
+            valIncomeDescription.setText("Description is required");
             flag = false;
+        } else {
+            valIncomeDescription.setText("*");
         }
-        if(txtIncomeAmount.getText().isEmpty()){
+        if (txtIncomeAmount.getText().isEmpty()) {
 
             valIncomeAmount.setText("Amount is required");
             flag = false;
+        } else {
+            try {
+                double val = Double.parseDouble(txtIncomeAmount.getText().toString());
+            } catch (NumberFormatException e) {
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Error");
+                alert.setContentText("Amount should be a number");
+                alert.showAndWait();
+                valIncomeAmount.setText("Amount should be a number");
+                flag = false;
+            }
+            valIncomeAmount.setText("*");
         }
-        if(choiceboxIncomeCategory.getValue()==null){
+        if (choiceboxIncomeCategory.getValue() == null) {
             valIncomeCategory.setText("Category is required");
             flag = false;
+        } else {
+            valIncomeCategory.setText("*");
         }
-        if(choiceboxIncomeAcount.getValue()==null){
+        if (choiceboxIncomeAcount.getValue() == null) {
             valIncomeAccount.setText("Account is required");
             flag = false;
+        } else {
+            valIncomeAccount.setText("*");
         }
 
-        if(dateIncome.getValue()==null){
+        if (dateIncome.getValue() == null) {
             valIncomeDate.setText("Date is required");
 
             flag = false;
+        } else {
+            valIncomeDate.setText("*");
         }
-        if(txtIncomeNote.getText().isEmpty()){
+        if (txtIncomeNote.getText().isEmpty()) {
             valIncomeNote.setText("Note is required");
             flag = false;
+        } else {
+            valIncomeNote.setText("*");
         }
         return flag;
     }
 
 
     private boolean saveTransferTransaction(UserDirectory userDirectory, User user, LocalDate value, String text, String text1, String text2, String value1, String value2) {
-        Date date1 = Date.from(value.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        if(userDirectory.getAccount(value1,user).getAmount()-Double.parseDouble(text)<0)
-        {
-            Alert  alert = new Alert(Alert.AlertType.ERROR);
+
+        boolean val = checkValidationTransfer(valIncomeDescription, valIncomeAmount, valIncomeCategory, valIncomeAccount, valIncomeDate, valIncomeNote);
+        if (!val) {
+            return false;
+        }
+        if (userDirectory.getAccount(value1, user).getAmount() - Double.parseDouble(text) < 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Error");
-            alert.setContentText("Insufficient Balance your balance is "+userDirectory.getAccount(value1,user).getAmount());
+            alert.setContentText("Insufficient Balance your balance is " + userDirectory.getAccount(value1, user).getAmount());
             alert.showAndWait();
-        }
-        userDirectory.getAccount(value1,user).setAmount(userDirectory.getAccount(value1,user).getAmount()-Double.parseDouble(text));
+            return false;
 
-        userDirectory.getAccount(value2,user).setAmount(userDirectory.getAccount(value2,user).getAmount()+Double.parseDouble(text));
-        Transaction transaction = new Transaction(Double.parseDouble(text), userDirectory.getAccount(value1,user), date1, value2, text1, text2);
-        Transaction transaction1 = new Transaction(Double.parseDouble(text), userDirectory.getAccount(value2,user), date1, value1, text1, text2);
+        }
+        Date date1 = Date.from(value.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        userDirectory.getAccount(value1, user).setAmount(userDirectory.getAccount(value1, user).getAmount() - Double.parseDouble(text));
+
+        userDirectory.getAccount(value2, user).setAmount(userDirectory.getAccount(value2, user).getAmount() + Double.parseDouble(text));
+        Transaction transaction = new Transaction(Double.parseDouble(text), userDirectory.getAccount(value1, user), date1, value2, text1, text2);
+        Transaction transaction1 = new Transaction(Double.parseDouble(text), userDirectory.getAccount(value2, user), date1, value1, text1, text2);
         user.getTransactionDirectory().addNewTransaction(transaction);
         user.getTransactionDirectory().addNewTransaction(transaction1);
         System.out.println(transaction.toString());
         System.out.println(transaction1.toString());
+
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText("Transaction Successful");
+        alert.setContentText("Transaction Successful New balance is" + userDirectory.getAccount(value1, user).getAmount());
+        alert.showAndWait();
+
 
         txtTransferAmount.setText("");
         txtTransferDescription.setText("");
@@ -314,20 +349,83 @@ public class TransactionsController implements Initializable {
         return true;
     }
 
-    private boolean saveIncomeTransaction(UserDirectory userDirectory, User user,LocalDate date, String  amount, String income, String incomedescription, String incomecategory, String accountname) {
+    private boolean checkValidationTransfer(Label valIncomeDescription, Label valIncomeAmount, Label valIncomeCategory, Label valIncomeAccount, Label valIncomeDate, Label valIncomeNote) {
+        boolean flag = true;
+        if (txtTransferDescription.getText().isEmpty()) {
+            valTransferDescription.setText("Description is required");
+            flag = false;
+        } else {
+            valTransferDescription.setText("*");
+        }
+
+        if (txtTransferAmount.getText().isEmpty()) {
+
+            valTransferAmount.setText("Amount is required");
+            flag = false;
+        } else {
+            try {
+                double val = Double.parseDouble(txtTransferAmount.getText().toString());
+            } catch (NumberFormatException e) {
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Error");
+                alert.setContentText("Amount should be a number");
+                alert.showAndWait();
+                valTransferAmount.setText("Amount should be a number");
+                flag = false;
+            }
+            valTransferAmount.setText("*");
+        }
+        if (choiceBoxTransferFrom.getValue() == null) {
+            valTransferFrom.setText("From is required");
+            flag = false;
+        } else {
+            valTransferFrom.setText("*");
+        }
+        if (choiceBoxTransferTo.getValue() == null) {
+            valTransferTo.setText("To is required");
+            flag = false;
+        } else {
+            valTransferTo.setText("*");
+        }
+
+        if (dateTransfer.getValue() == null) {
+            valTransferDate.setText("Date is required");
+
+            flag = false;
+        } else {
+            valTransferDate.setText("*");
+        }
+        if (txtTransferNote.getText().isEmpty()) {
+            valTransferNote.setText("Note is required");
+            flag = false;
+        } else {
+            valTransferNote.setText("*");
+        }
+        return flag;
+    }
+
+    private boolean saveIncomeTransaction(UserDirectory userDirectory, User user, LocalDate date, String amount, String income, String incomedescription, String incomecategory, String accountname) {
 
 
-        boolean val=checkvalidationIncome(valIncomeDescription, valIncomeAmount, valIncomeCategory, valIncomeAccount, valIncomeDate, valIncomeNote);
-        if(!val)
-        {
+        boolean val = checkvalidationIncome(valIncomeDescription, valIncomeAmount, valIncomeCategory, valIncomeAccount, valIncomeDate, valIncomeNote);
+        if (!val) {
             return false;
         }
 
         Date date1 = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        userDirectory.getAccount(accountname,user).setAmount(userDirectory.getAccount(accountname,user).getAmount()+Double.parseDouble(amount));
-        Transaction transaction = new Transaction(Double.parseDouble(amount), userDirectory.getAccount(accountname,user), date1, incomecategory, incomedescription, income);
+        userDirectory.getAccount(accountname, user).setAmount(userDirectory.getAccount(accountname, user).getAmount() + Double.parseDouble(amount));
+        Transaction transaction = new Transaction(Double.parseDouble(amount), userDirectory.getAccount(accountname, user), date1, incomecategory, incomedescription, income);
         user.getTransactionDirectory().addNewTransaction(transaction);
         System.out.println(transaction.toString());
+
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText("Transaction Successful");
+        alert.setContentText("Transaction Successful New balance is" + userDirectory.getAccount(accountname, user).getAmount());
+        alert.showAndWait();
 
         txtIncomeAmount.setText("");
         txtIncomeDescription.setText("");
@@ -347,29 +445,34 @@ public class TransactionsController implements Initializable {
 
     }
 
-    private boolean saveExpenseTransaction(UserDirectory userDirectory, User user,LocalDate date, String  amount, String expense, String expensedescription, String expensecategory, String accountname) {
+    private boolean saveExpenseTransaction(UserDirectory userDirectory, User user, LocalDate date, String amount, String expense, String expensedescription, String expensecategory, String accountname) {
 
-        boolean val=checkValdationExpense(valExpenseDescription, valExpenseAmount, valExpenseCategory, valExpenseAccount, valExpenseDate, valExpenseNote);
-        if(val==false)
-        {
+        boolean val = checkValdationExpense(valExpenseDescription, valExpenseAmount, valExpenseCategory, valExpenseAccount, valExpenseDate, valExpenseNote);
+        if (val == false) {
             return false;
         }
         Date date1 = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        if(userDirectory.getAccount(accountname,user).getAmount()-Double.parseDouble(amount)<0)
-        {
-            Alert  alert = new Alert(Alert.AlertType.ERROR);
+        if (userDirectory.getAccount(accountname, user).getAmount() - Double.parseDouble(amount) < 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Insufficient Balance");
-            alert.setContentText("Insufficient Balance"+userDirectory.getAccount(accountname,user).getAmount());
+            alert.setContentText("Insufficient Balance" + userDirectory.getAccount(accountname, user).getAmount());
             alert.showAndWait();
 
             return true;
         }
-        userDirectory.getAccount(accountname,user).setAmount(userDirectory.getAccount(accountname,user).getAmount()-Double.parseDouble(amount));
+        userDirectory.getAccount(accountname, user).setAmount(userDirectory.getAccount(accountname, user).getAmount() - Double.parseDouble(amount));
 
-        Transaction transaction = new Transaction(Double.parseDouble(amount), userDirectory.getAccount(accountname,user), date1, expensecategory, expensedescription, expense);
+        Transaction transaction = new Transaction(Double.parseDouble(amount), userDirectory.getAccount(accountname, user), date1, expensecategory, expensedescription, expense);
         user.getTransactionDirectory().addNewTransaction(transaction);
         System.out.println(transaction.toString());
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText("Transaction Successful");
+        alert.setContentText("Transaction Successful New balance is" + userDirectory.getAccount(accountname, user).getAmount());
+        alert.showAndWait();
+
 
         txtExpenseAmount.setText("");
         txtExpenseDescription.setText("");
@@ -389,32 +492,56 @@ public class TransactionsController implements Initializable {
 
     private boolean checkValdationExpense(Label valExpenseDescription, Label valExpenseAmount, Label valExpenseCategory, Label valExpenseAccount, Label valExpenseDate, Label valExpenseNote) {
         boolean flag = true;
-        if(txtExpenseDescription.getText().isEmpty()){
+        if (txtExpenseDescription.getText().isEmpty()) {
             valExpenseDescription.setText("Description is required");
             flag = false;
+        } else {
+            valExpenseDescription.setText("*");
         }
-        if(txtExpenseAmount.getText().isEmpty()){
+        if (txtExpenseAmount.getText().isEmpty()) {
 
             valExpenseAmount.setText("Amount is required");
             flag = false;
+        } else {
+            valExpenseAmount.setText("*");
         }
-        if(choiceboxExpenseCategory.getValue()==null){
+        if (choiceboxExpenseCategory.getValue() == null) {
             valExpenseCategory.setText("Category is required");
             flag = false;
+        } else {
+            valExpenseCategory.setText("*");
         }
-        if(choiceboxExpenseAccount.getValue()==null){
+        if (choiceboxExpenseAccount.getValue() == null) {
             valExpenseAccount.setText("Account is required");
             flag = false;
+        } else {
+            try {
+                Double.parseDouble(txtExpenseAmount.getText());
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Amount should be a number");
+                alert.setContentText("Amount should be a number");
+                alert.showAndWait();
+
+                valExpenseAmount.setText("Amount should be a number");
+                flag = false;
+            }
+            valExpenseAccount.setText("*");
         }
 
-        if(dateExpense.getValue()==null){
+        if (dateExpense.getValue() == null) {
             valExpenseDate.setText("Date is required");
 
             flag = false;
+        } else {
+            valExpenseDate.setText("*");
         }
-        if(txtExpenseNote.getText().isEmpty()){
+        if (txtExpenseNote.getText().isEmpty()) {
             valExpenseNote.setText("Note is required");
             flag = false;
+        } else {
+            valExpenseNote.setText("*");
         }
         return flag;
 
