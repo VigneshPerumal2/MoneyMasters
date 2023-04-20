@@ -42,6 +42,7 @@ public class TransactionDirectory {
     public void deleteAll(){
         history.removeAll(history);
     }
+
     @Override
     public String toString() {
         return "TransactionDirectory{" + "history=" + history + '}';

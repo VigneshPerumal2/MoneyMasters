@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.DropdownButton?>
-<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -58,27 +58,21 @@
                               <Text layoutX="32.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" wrappingWidth="54.21630859375" />
                               <Text layoutX="36.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount" wrappingWidth="60.21630859375" />
                               <Text layoutX="37.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note" wrappingWidth="58.21630859375" />
-                              <Text layoutX="34.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="74.21630859375" />
-                              <DropdownButton layoutX="143.0" layoutY="58.0" prefHeight="14.0" prefWidth="88.0">
-                                 <items>
-                                    <MenuItem text="Choice 1" />
-                                    <MenuItem text="Choice 2" />
-                                    <MenuItem text="Choice 3" />
-                                 </items>
-                              </DropdownButton>
-                              <DatePicker layoutX="141.0" layoutY="17.0" prefHeight="26.0" prefWidth="132.0" />
-                              <DropdownButton layoutX="146.0" layoutY="90.0" prefHeight="12.0" prefWidth="87.0">
-                                 <items>
-                                    <MenuItem text="Choice 1" />
-                                    <MenuItem text="Choice 2" />
-                                    <MenuItem text="Choice 3" />
-                                 </items>
-                              </DropdownButton>
-                              <TextField layoutX="142.0" layoutY="121.0" prefHeight="27.0" prefWidth="135.0" />
-                              <TextField layoutX="141.0" layoutY="158.0" prefHeight="27.0" prefWidth="136.0" />
-                              <TextField layoutX="142.0" layoutY="199.0" prefHeight="27.0" prefWidth="136.0" />
-                              <Button fx:id="cancelButton" layoutX="90.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="CANCEL" />
-                              <Button fx:id="saveButton" layoutX="271.0" layoutY="286.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="SAVE" textFill="#7c2b2b" />
+                              <Text layoutX="29.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="74.21630859375" />
+                              <TextField fx:id="txtIncomeNote" layoutX="139.0" layoutY="173.0" prefHeight="27.0" prefWidth="136.0" />
+                              <TextField fx:id="txtIncomeDescription" layoutX="142.0" layoutY="212.0" prefHeight="27.0" prefWidth="136.0" />
+                              <Button fx:id="buttonIncomeCancel" layoutX="90.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="CANCEL" />
+                              <Button fx:id="buttonIncomeSave" layoutX="271.0" layoutY="286.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="SAVE" textFill="#7c2b2b" />
+                              <ComboBox fx:id="choiceboxIncomeAcount" layoutX="135.0" layoutY="58.0" prefWidth="150.0" />
+                              <ComboBox fx:id="choiceboxIncomeCategory" layoutX="135.0" layoutY="97.0" prefWidth="150.0" />
+                              <TextField fx:id="txtIncomeAmount" layoutX="134.0" layoutY="136.0" prefHeight="26.0" prefWidth="145.0" />
+                              <DatePicker fx:id="dateIncome" layoutX="134.0" layoutY="17.0" prefHeight="26.0" prefWidth="148.0" />
+                              <Label fx:id="valIncomeDate" layoutX="354.0" layoutY="22.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valIncomeAccount" layoutX="355.0" layoutY="63.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valIncomeCategory" layoutX="355.0" layoutY="102.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valIncomeAmount" layoutX="355.0" layoutY="154.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valIncomeNote" layoutX="354.0" layoutY="191.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valIncomeDescription" layoutX="356.0" layoutY="231.0" text="*" textFill="#e05a5a" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -93,26 +87,20 @@
                               <Text layoutX="36.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount" wrappingWidth="60.21630859375" />
                               <Text layoutX="37.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note" wrappingWidth="58.21630859375" />
                               <Text layoutX="34.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="74.21630859375" />
-                              <DropdownButton layoutX="143.0" layoutY="58.0" prefHeight="14.0" prefWidth="88.0">
-                                 <items>
-                                    <MenuItem text="Choice 1" />
-                                    <MenuItem text="Choice 2" />
-                                    <MenuItem text="Choice 3" />
-                                 </items>
-                              </DropdownButton>
-                              <DatePicker layoutX="141.0" layoutY="17.0" prefHeight="26.0" prefWidth="132.0" />
-                              <DropdownButton layoutX="146.0" layoutY="90.0" prefHeight="12.0" prefWidth="87.0">
-                                 <items>
-                                    <MenuItem text="Choice 1" />
-                                    <MenuItem text="Choice 2" />
-                                    <MenuItem text="Choice 3" />
-                                 </items>
-                              </DropdownButton>
-                              <TextField layoutX="142.0" layoutY="121.0" prefHeight="27.0" prefWidth="135.0" />
-                              <TextField layoutX="141.0" layoutY="158.0" prefHeight="27.0" prefWidth="136.0" />
-                              <TextField layoutX="142.0" layoutY="199.0" prefHeight="27.0" prefWidth="136.0" />
-                              <Button layoutX="90.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="CANCEL" />
-                              <Button layoutX="271.0" layoutY="286.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="SAVE" textFill="#7c2b2b" />
+                              <DatePicker fx:id="dateExpense" layoutX="141.0" layoutY="17.0" prefHeight="26.0" prefWidth="132.0" />
+                              <TextField fx:id="txtExpenseAmount" layoutX="142.0" layoutY="121.0" prefHeight="27.0" prefWidth="135.0" />
+                              <TextField fx:id="txtExpenseNote" layoutX="141.0" layoutY="158.0" prefHeight="27.0" prefWidth="136.0" />
+                              <TextField fx:id="txtExpenseDescription" layoutX="142.0" layoutY="199.0" prefHeight="27.0" prefWidth="136.0" />
+                              <Button fx:id="buttonExpenseCancel" layoutX="90.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="CANCEL" />
+                              <Button fx:id="buttonSaveExpense" layoutX="271.0" layoutY="286.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="SAVE" textFill="#7c2b2b" />
+                              <ComboBox fx:id="choiceboxExpenseAccount" layoutX="142.0" layoutY="58.0" prefWidth="150.0" />
+                              <ComboBox fx:id="choiceboxExpenseCategory" layoutX="142.0" layoutY="97.0" prefWidth="150.0" />
+                              <Label fx:id="valExpenseDate" layoutX="339.0" layoutY="21.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valExpenseAccount" layoutX="339.0" layoutY="63.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valExpenseCategory" layoutX="339.0" layoutY="102.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valExpenseAmount" layoutX="339.0" layoutY="140.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valExpenseNote" layoutX="339.0" layoutY="177.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valExpenseDescription" layoutX="339.0" layoutY="213.0" text="*" textFill="#e05a5a" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -127,14 +115,20 @@
                               <Text layoutX="30.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount" wrappingWidth="60.21630859375" />
                               <Text layoutX="30.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note" wrappingWidth="58.21630859375" />
                               <Text layoutX="31.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="71.66360473632812" />
-                              <DatePicker layoutX="131.0" layoutY="18.0" prefHeight="26.0" prefWidth="139.0" />
-                              <TextField layoutX="135.0" layoutY="120.0" prefHeight="27.0" prefWidth="135.0" />
-                              <TextField layoutX="133.0" layoutY="158.0" prefHeight="14.0" prefWidth="141.0" />
-                              <TextField layoutX="131.0" layoutY="191.0" prefHeight="27.0" prefWidth="144.0" />
-                              <Button layoutX="90.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="CANCEL" />
-                              <Button layoutX="251.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="SAVE" textFill="#7c2b2b" />
-                              <TextField layoutX="137.0" layoutY="81.0" prefHeight="27.0" prefWidth="135.0" />
-                              <TextField layoutX="137.0" layoutY="50.0" prefHeight="27.0" prefWidth="135.0" />
+                              <DatePicker fx:id="dateTransfer" layoutX="131.0" layoutY="18.0" prefHeight="26.0" prefWidth="139.0" />
+                              <TextField fx:id="txtTransferAmount" layoutX="133.0" layoutY="135.0" prefHeight="27.0" prefWidth="135.0" />
+                              <TextField fx:id="txtTransferNote" layoutX="133.0" layoutY="158.0" prefHeight="14.0" prefWidth="141.0" />
+                              <TextField fx:id="txtTransferDescription" layoutX="131.0" layoutY="191.0" prefHeight="27.0" prefWidth="144.0" />
+                              <Button fx:id="buttonTransferCancel" layoutX="90.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="CANCEL" />
+                              <Button fx:id="buttonTransferSave" layoutX="251.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="SAVE" textFill="#7c2b2b" />
+                              <ComboBox fx:id="choiceBoxTransferFrom" layoutX="125.0" layoutY="59.0" prefWidth="150.0" />
+                              <ComboBox fx:id="choiceBoxTransferTo" layoutX="125.0" layoutY="97.0" prefWidth="150.0" />
+                              <Label fx:id="valTransferDate" layoutX="326.0" layoutY="22.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valTransferFrom" layoutX="329.0" layoutY="62.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valTransferTo" layoutX="327.0" layoutY="102.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valTransferAmount" layoutX="326.0" layoutY="154.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valTransferNote" layoutX="328.0" layoutY="187.0" text="*" textFill="#e05a5a" />
+                              <Label fx:id="valTransferDescription" layoutX="329.0" layoutY="218.0" text="*" textFill="#e05a5a" />
                            </children>
                         </AnchorPane>
                      </content>

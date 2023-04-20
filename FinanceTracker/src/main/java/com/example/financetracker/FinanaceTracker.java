@@ -133,8 +133,11 @@ public class FinanaceTracker extends Application {
 
 
         User user = new User("John Doe", 35, "Male", "123", "123", "New York City", 5551234567L, new ArrayList<Account>(), new Budget(),loadTransactionData());
-
+        Account account = new Account("Savings Account", "Savings", 5000.0, "Initial deposit");
+        Account account1 = new Account("Debit Account", "Debit", 5000.0, "Initial deposit");
         // Create a new user and loading it into the user directory
+        user.getUserAccounts().add(account);
+        user.getUserAccounts().add(account1);
         userDirectory.addNewUser(user);
 
         launch();
