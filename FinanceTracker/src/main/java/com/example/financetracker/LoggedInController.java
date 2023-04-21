@@ -19,7 +19,6 @@ public class LoggedInController implements Initializable{
 	private  TransactionDirectory transactionDirectory;
 	@FXML
     private Button button_logout;
-
     @FXML
     private Label label_fav_channel;
 	@FXML
