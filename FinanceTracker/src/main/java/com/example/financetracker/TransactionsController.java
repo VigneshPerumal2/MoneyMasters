@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import com.gluonhq.charm.glisten.control.DropdownButton;
 import model.Account;
 import model.Transaction;
 import model.User;
@@ -18,155 +17,106 @@ import model.User;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.ResourceBundle;
 
 public class TransactionsController implements Initializable {
 
 
-    @FXML
-    private Button buttonExpenseCancel;
-
-    @FXML
-    private Button buttonIncomeCancel;
-
-    @FXML
-    private Button buttonIncomeSave;
-
-    @FXML
-    private Button buttonSaveExpense;
-
-    @FXML
-    private Button buttonTransferCancel;
-
-    @FXML
-    private Button buttonTransferSave;
-
-    @FXML
-    private Button buttonTransaction;
-
-    @FXML
-    private Button buttonAccount;
-
-    @FXML
-    private Button buttonProfile;
-
-    @FXML
-    private ComboBox<String> choiceBoxTransferTo;
-
-    @FXML
-    private ComboBox<String> choiceBoxTransferFrom;
-
-    @FXML
-    private ComboBox<String> choiceboxExpenseAccount;
-
-    @FXML
-    private ComboBox<String> choiceboxExpenseCategory;
-
-    @FXML
-    private ComboBox<String> choiceboxIncomeAcount;
-
-    @FXML
-    private ComboBox<String> choiceboxIncomeCategory;
-
-    @FXML
-    private DatePicker dateExpense;
-
-    @FXML
-    private DatePicker dateIncome;
-
-    @FXML
-    private DatePicker dateTransfer;
-
-    @FXML
-    private TextField txtExpenseAmount;
-
-    @FXML
-    private TextField txtExpenseDescription;
-
-    @FXML
-    private TextField txtExpenseNote;
-
-    @FXML
-    private TextField txtIncomeAmount;
-
-    @FXML
-    private TextField txtIncomeDescription;
-
-    @FXML
-    private TextField txtIncomeNote;
-
-    @FXML
-    private TextField txtTransferAmount;
-
-    @FXML
-    private TextField txtTransferDescription;
-
-    @FXML
-    private TextField txtTransferNote;
-
-    @FXML
-    private Label valExpenseAccount;
-
-    @FXML
-    private Label valExpenseAmount;
-
-    @FXML
-    private Label valExpenseCategory;
-
-    @FXML
-    private Label valExpenseDate;
-
-    @FXML
-    private Label valExpenseDescription;
-
-    @FXML
-    private Label valExpenseNote;
-
-    @FXML
-    private Label valIncomeAccount;
-
-    @FXML
-    private Label valIncomeAmount;
-
-    @FXML
-    private Label valIncomeCategory;
-
-    @FXML
-    private Label valIncomeDate;
-
-    @FXML
-    private Label valIncomeDescription;
-
-    @FXML
-    private Label valIncomeNote;
-
-    @FXML
-    private Label valTransferAmount;
-
-    @FXML
-    private Label valTransferDate;
-
-    @FXML
-    private Label valTransferDescription;
-
-    @FXML
-    private Label valTransferFrom;
-
-    @FXML
-    private Label valTransferNote;
-
-    @FXML
-    private Label valTransferTo;
-
-
     UserDirectory userDirectory;
     Stage stage;
-
     User user;
+    @FXML
+    private Button buttonExpenseCancel;
+    @FXML
+    private Button buttonIncomeCancel;
+    @FXML
+    private Button buttonIncomeSave;
+    @FXML
+    private Button buttonSaveExpense;
+    @FXML
+    private Button buttonTransferCancel;
+    @FXML
+    private Button buttonTransferSave;
+    @FXML
+    private Button buttonTransaction;
+    @FXML
+    private Button buttonAccount;
+    @FXML
+    private Button buttonProfile;
+    @FXML
+    private ComboBox<String> choiceBoxTransferTo;
+    @FXML
+    private ComboBox<String> choiceBoxTransferFrom;
+    @FXML
+    private ComboBox<String> choiceboxExpenseAccount;
+    @FXML
+    private ComboBox<String> choiceboxExpenseCategory;
+    @FXML
+    private ComboBox<String> choiceboxIncomeAcount;
+    @FXML
+    private ComboBox<String> choiceboxIncomeCategory;
+    @FXML
+    private DatePicker dateExpense;
+    @FXML
+    private DatePicker dateIncome;
+    @FXML
+    private DatePicker dateTransfer;
+    @FXML
+    private TextField txtExpenseAmount;
+    @FXML
+    private TextField txtExpenseDescription;
+    @FXML
+    private TextField txtExpenseNote;
+    @FXML
+    private TextField txtIncomeAmount;
+    @FXML
+    private TextField txtIncomeDescription;
+    @FXML
+    private TextField txtIncomeNote;
+    @FXML
+    private TextField txtTransferAmount;
+    @FXML
+    private TextField txtTransferDescription;
+    @FXML
+    private TextField txtTransferNote;
+    @FXML
+    private Label valExpenseAccount;
+    @FXML
+    private Label valExpenseAmount;
+    @FXML
+    private Label valExpenseCategory;
+    @FXML
+    private Label valExpenseDate;
+    @FXML
+    private Label valExpenseDescription;
+    @FXML
+    private Label valExpenseNote;
+    @FXML
+    private Label valIncomeAccount;
+    @FXML
+    private Label valIncomeAmount;
+    @FXML
+    private Label valIncomeCategory;
+    @FXML
+    private Label valIncomeDate;
+    @FXML
+    private Label valIncomeDescription;
+    @FXML
+    private Label valIncomeNote;
+    @FXML
+    private Label valTransferAmount;
+    @FXML
+    private Label valTransferDate;
+    @FXML
+    private Label valTransferDescription;
+    @FXML
+    private Label valTransferFrom;
+    @FXML
+    private Label valTransferNote;
+    @FXML
+    private Label valTransferTo;
 
     public TransactionsController(UserDirectory userDirectory, User user, Stage stage) {
         this.userDirectory = userDirectory;
@@ -227,7 +177,7 @@ public class TransactionsController implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("Account.fxml"));
-                    AccountController accountController = new AccountController(userDirectory, user, stage,"test");
+                    AccountController accountController = new AccountController(userDirectory, user, stage, "test");
                     loader.setController(accountController);
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
@@ -424,7 +374,7 @@ public class TransactionsController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
         alert.setHeaderText("Transaction Successful");
-        alert.setContentText("Transaction Successful New balance is" + userDirectory.getAccount(accountname, user).getAmount());
+        alert.setContentText("Transaction Successful New balance in " + userDirectory.getAccount(accountname, user).getAccountName() + " = " + userDirectory.getAccount(accountname, user).getAmount());
         alert.showAndWait();
 
         txtIncomeAmount.setText("");

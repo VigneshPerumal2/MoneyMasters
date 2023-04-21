@@ -19,35 +19,12 @@ import java.util.Date;
 
 public class FinanceTracker extends Application {
 
-    static UserDirectory userDirectory ;
+    static UserDirectory userDirectory;
     static User user;
 
+    private static TransactionDirectory loadTransactionData() {
 
-
-    @Override
-    public void start(Stage stage) throws IOException {
-        showLogInController(stage);
-
-    }
-
-    private void showLogInController(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
-        SignInController controller = new SignInController(userDirectory,user,stage);
-
-        loader.setController(controller);
-
-        Parent root = loader.load();
-
-
-        Scene scene = new Scene(root, 800, 600);
-        stage.setScene(scene);
-        stage.setTitle("Money Manager");
-        stage.show();
-    }
-
-    private static TransactionDirectory loadTransactionData(){
-
-        TransactionDirectory  transactionDirectory = new TransactionDirectory();
+        TransactionDirectory transactionDirectory = new TransactionDirectory();
 
 // create a new Account object with some sample values
         Account account2 = new Account("Checking Account", "Checking", 2500.0, "Paycheck deposit");
@@ -79,11 +56,7 @@ public class FinanceTracker extends Application {
                 {"2023-01-20", "Beauty", "Bought hair care products", "25.00", "Expense"},
                 {"2023-01-21", "Transportation", "Filled up gas", "48.80", "Expense"},
                 {"2023-01-22", "Food", "Bought groceries for the week", "87.12", "Expense"},
-                {"2023-01-23", "Culture", "Went to an art gallery", "15.00", "Expense"},
-                {"2023-01-23", "Culture", "Went to an art gallery", "15.00", "Expense"},
-                {"2023-01-23", "Culture", "Went to an art gallery", "15.00", "Expense"},
                 {"2023-01-23", "Culture", "Went to an art gallery", "15.00", "Expense"}};
-
 
 
 // use a loop to create 50 Transaction objects with realistic data
@@ -94,7 +67,7 @@ public class FinanceTracker extends Application {
 
                 // create a new Transaction object with the parsed data and type
                 transactionDirectory.addNewTransaction(new Transaction(
-                                Double.parseDouble(transactionData[i][3]), // amount
+                        Double.parseDouble(transactionData[i][3]), // amount
                         account2, // account
                         transactionDate, // transactionDate
                         transactionData[i][1], // category
@@ -109,21 +82,6 @@ public class FinanceTracker extends Application {
 
 
         return transactionDirectory;
-    }
-
-    private void showDashboard(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainDashboard.fxml"));
-        DashboardController controller = new DashboardController(userDirectory,user,stage);
-
-        loader.setController(controller);
-
-        Parent root = loader.load();
-
-
-        Scene scene = new Scene(root, 800, 600);
-        stage.setScene(scene);
-        stage.setTitle("Money Manager");
-        stage.show();
     }
 
     public static void main(String[] args) {
@@ -147,11 +105,51 @@ public class FinanceTracker extends Application {
         Account account5 = new Account("Retirement Account", "Retirement", 50000.0, "401(k) contribution");
         accountList.add(account5);
 
-        User user = new User("John Doe", 35, "Male", "123", "123", "New York City", 5551234567L, accountList,loadTransactionData());
+        User user = new User("John Doe", 35, "Male", "123", "123", "New York City", 5551234567L, accountList, loadTransactionData());
 
         // Create a new user and loading it into the user directory
         userDirectory.addNewUser(user);
 
         launch();
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        showLogInController(stage);
+
+    }
+
+    private void showLogInController(Stage stage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
+        SignInController controller = new SignInController(userDirectory, user, stage);
+
+        loader.setController(controller);
+
+        Parent root = loader.load();
+
+
+        Scene scene = new Scene(root, 800, 600);
+        // Add the CSS file to the scene's stylesheets
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setTitle("Spend Wise");
+        stage.show();
+    }
+
+    private void showDashboard(Stage stage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainDashboard.fxml"));
+        DashboardController controller = new DashboardController(userDirectory, user, stage);
+
+        loader.setController(controller);
+
+        Parent root = loader.load();
+
+
+        Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
+        stage.setScene(scene);
+        stage.setTitle("Spend Wise");
+        stage.show();
     }
 }

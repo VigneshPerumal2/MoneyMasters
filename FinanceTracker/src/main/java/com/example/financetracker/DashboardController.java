@@ -1,6 +1,5 @@
 package com.example.financetracker;
 
-import directories.TransactionDirectory;
 import directories.UserDirectory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,58 +18,52 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import model.Account;
 import model.Transaction;
 import model.User;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.FileSystemNotFoundException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class DashboardController implements Initializable {
 
+    public UserDirectory userDirectory;
+    public User user;
+    String username;
     private Stage stage;
     @FXML
-    private Button transactionButton, accountButton, profileButton, logoutButton, statsButton, budgetButton, notesButton;
-
+    private Button transactionButton, accountButton, profileButton, btnLogOut, statsButton, budgetButton, notesButton;
     @FXML
     private TabPane tabPane;
-
     @FXML
     private Text txtTotalBalance;
-
     @FXML
     private Text txtTotalExpense;
-
     @FXML
     private Text txtUserName;
-
     @FXML
     private BarChart<String, Number> chartExpense;
-
-
     @FXML
     private BarChart<String, Number> chartIncome;
-
     @FXML
     private TableView<Transaction> tableTransactions;
 
-    public UserDirectory userDirectory ;
-
-    public User user;
-    String username;
-
-    public DashboardController(UserDirectory userDirectory, User user,Stage stage) {
+    public DashboardController(UserDirectory userDirectory, User user, Stage stage) {
         this.userDirectory = userDirectory;
         this.username = username;
-        this.stage=stage;
-        this.user= user;
-        System.out.println("DashboardController->"+userDirectory+username);
+        this.stage = stage;
+        this.user = user;
+        System.out.println("DashboardController->" + userDirectory + username);
 
     }
 
-    public void showExpenseChart(){
+    public void showExpenseChart() {
 
         // create a map to store the expenses by category
         Map<String, Double> expensesByCategory = new HashMap<>();
@@ -88,10 +81,10 @@ public class DashboardController implements Initializable {
         expensesByCategory.put("Other", 0.0);
         expensesByCategory.put("Phone", 0.0);
 
-        for(Transaction transaction: user.getTransactionDirectory().getHistory()){
+        for (Transaction transaction : user.getTransactionDirectory().getHistory()) {
             System.out.println(transaction);
-            if(Objects.equals(transaction.getTransactionType(), "Expense")){
-                expensesByCategory.put(transaction.getCategory(),expensesByCategory.get(transaction.getCategory())+transaction.getAmount());
+            if (Objects.equals(transaction.getTransactionType(), "Expense")) {
+                expensesByCategory.put(transaction.getCategory(), expensesByCategory.get(transaction.getCategory()) + transaction.getAmount());
             }
         }
 
@@ -157,11 +150,9 @@ public class DashboardController implements Initializable {
         chartIncome.setData(data);
 
 
-
     }
 
     public void showTransactions() {
-
 
 
         // Create columns
@@ -174,24 +165,53 @@ public class DashboardController implements Initializable {
         amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         noteCol.setCellValueFactory(new PropertyValueFactory<>("note"));
 
+        // Format date column
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+        StringConverter<Date> dateConverter = new StringConverter<Date>() {
+            @Override
+            public String toString(Date date) {
+                return formatter.format(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            }
+
+            @Override
+            public Date fromString(String string) {
+                try {
+                    return Date.from(LocalDate.parse(string, formatter).atStartOfDay(ZoneId.systemDefault()).toInstant());
+                } catch (DateTimeParseException e) {
+                    return null;
+                }
+            }
+        };
+        dateCol.setCellFactory(column -> new TableCell<Transaction, Date>() {
+            @Override
+            protected void updateItem(Date item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    setText(null);
+                } else {
+                    setText(dateConverter.toString(item));
+                }
+            }
+        });
+
         // Add columns to table
         tableTransactions.getColumns().add(dateCol);
         tableTransactions.getColumns().add(amountCol);
         tableTransactions.getColumns().add(noteCol);
 
-        // Populate table with transactions
-        ObservableList<Transaction> data = FXCollections.observableArrayList(user.getTransactionDirectory().getHistory());
+        // Populate table with transactions, sorted by latest date first
+        List<Transaction> transactionList = user.getTransactionDirectory().getHistory();
+        Comparator<Transaction> dateComparator = Comparator.comparing(Transaction::getTransactionDate).reversed();
+        Collections.sort(transactionList, dateComparator);
+        ObservableList<Transaction> data = FXCollections.observableArrayList(transactionList);
         tableTransactions.setItems(data);
 
     }
 
 
-
-
-
     private void showDashboardTransaction(Stage stage) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Transactions.fxml"));
-        TransactionsController controller = new TransactionsController(userDirectory,user,stage);
+        TransactionsController controller = new TransactionsController(userDirectory, user, stage);
 
         loader.setController(controller);
 
@@ -211,7 +231,7 @@ public class DashboardController implements Initializable {
 
     private void showDashboardAccount(Stage stage) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Account.fxml"));
-        AccountController controller = new AccountController(userDirectory,user,stage,"Vignesh");
+        AccountController controller = new AccountController(userDirectory, user, stage, "Vignesh");
 
         loader.setController(controller);
 
@@ -228,14 +248,15 @@ public class DashboardController implements Initializable {
         stage.setTitle("Account Manager");
         stage.show();
     }
+
     private void updateTotalBalance() {
         // TODO: Fetch the total balance from the MySQL server and update the totalBalanceText
 
-        double totalBalance=0;
-        for(Account account:user.getUserAccounts()){
-            totalBalance+=account.getAmount();
+        double totalBalance = 0;
+        for (Account account : user.getUserAccounts()) {
+            totalBalance += account.getAmount();
         }
-        if(totalBalance>0){
+        if (totalBalance > 0) {
             txtTotalBalance.setText(String.valueOf(totalBalance));
         }
 
@@ -244,17 +265,33 @@ public class DashboardController implements Initializable {
     private void updateTotalExpense() {
         // TODO: Fetch the total balance from the MySQL server and update the totalBalanceText
         // Example: totalBalanceText.setText(String.valueOf(fetchedBalance));
-        double totalExpense=0;
-        for(Transaction transaction:user.getTransactionDirectory().getHistory()){
-            totalExpense+=transaction.getAmount();
+        double totalExpense = 0;
+        for (Transaction transaction : user.getTransactionDirectory().getHistory()) {
+            totalExpense += transaction.getAmount();
         }
 
 
-            txtTotalExpense.setText(String.valueOf(totalExpense));
+        txtTotalExpense.setText(String.valueOf(totalExpense));
 
 
     }
 
+    private void showLogInController(Stage stage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
+        SignInController controller = new SignInController(userDirectory, user, stage);
+
+        loader.setController(controller);
+
+        Parent root = loader.load();
+
+
+        Scene scene = new Scene(root, 800, 600);
+        // Add the CSS file to the scene's stylesheets
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setTitle("Spend Wise");
+        stage.show();
+    }
 
 
     @Override
@@ -284,12 +321,29 @@ public class DashboardController implements Initializable {
                 new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                       showDashboardAccount(stage);
+                        showDashboardAccount(stage);
 
                     }
 
                 }
         );
+
+        btnLogOut.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+
+                        try {
+                            showLogInController(stage);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+
+
+                    }
+                });
+
+
     }
 }
 

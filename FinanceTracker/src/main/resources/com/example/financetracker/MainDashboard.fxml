@@ -9,107 +9,107 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #63458A;" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="transactionButton" layoutX="16.0" layoutY="232.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="167.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="Transactions" />
-            <Button layoutY="551.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="203.0" style="-fx-background-color: #b7094c;" text="Logout" textAlignment="CENTER">
+    <left>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="transactionButton" layoutX="-6.0" layoutY="279.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="209.0" style="-fx-background-color: #57A773;" text="Transactions" textFill="WHITE" />
+                <Button fx:id="btnLogOut" layoutX="47.0" layoutY="535.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="97.0" style="-fx-background-color: #b7094c; -fx-background-radius: 15;" text="Logout" textAlignment="CENTER" textFill="WHITE" />
+                <Button fx:id="accountButton" layoutX="-6.0" layoutY="310.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="209.0" style="-fx-background-color: #860975;" text="Accounts" textFill="WHITE" />
+                <Button fx:id="dashboardButton" layoutX="-11.0" layoutY="247.0" mnemonicParsing="false" onAction="#btnDashboard" prefHeight="31.0" prefWidth="214.0" style="-fx-background-color: #FFA733;" text="Dashboard" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="accountButton" layoutX="16.0" layoutY="288.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="167.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="Accounts" />
-            <Button fx:id="profileButton" layoutX="16.0" layoutY="346.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="167.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="Profile" />
-            <Text fill="#9ca3db" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="201.31648635864258">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
-            <Text fx:id="txtUserName" fill="#9ca3db" layoutX="-1.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user" textAlignment="CENTER" wrappingWidth="201.31648635864258">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-   </left>
-   <right>
-      <AnchorPane prefHeight="600.0" prefWidth="602.0" style="-fx-background-color: #E1FAF9;" BorderPane.alignment="CENTER">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#63458a" height="133.0" layoutX="-4.0" layoutY="-53.0" stroke="#ffffff00" strokeType="OUTSIDE" width="613.0" />
-            <Text fill="#ffffff66" layoutY="49.0" stroke="#60428600" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard" textAlignment="CENTER" wrappingWidth="597.21630859375">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Text>
-            <Text fill="#00000066" layoutX="39.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Balance :" wrappingWidth="177.44140625">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text fx:id="txtTotalBalance" fill="#86e7b8" layoutX="34.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" wrappingWidth="529.4414367675781">
-               <font>
-                  <Font size="64.0" />
-               </font>
-            </Text>
-            <TabPane layoutX="20.0" layoutY="223.0" prefHeight="351.0" prefWidth="563.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab text="Expense">
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #C2EABA;">
-                           <children>
-                              <BarChart fx:id="chartExpense" layoutY="-2.0" prefHeight="298.0" prefWidth="566.0" title="Expense">
-                                 <xAxis>
-                                    <CategoryAxis side="BOTTOM" />
-                                 </xAxis>
-                                 <yAxis>
-                                    <NumberAxis side="LEFT" />
-                                 </yAxis>
-                              </BarChart>
-                           </children></AnchorPane>
-                     </content>
-                </Tab>
-                <Tab text="Income">
-                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffafcc;">
-                           <children>
-                              <BarChart fx:id="chartIncome" prefHeight="298.0" prefWidth="566.0" title="Income">
-                                 <xAxis>
-                                    <CategoryAxis side="BOTTOM" />
-                                 </xAxis>
-                                 <yAxis>
-                                    <NumberAxis side="LEFT" />
-                                 </yAxis>
-                              </BarChart>
-                           </children></AnchorPane>
-                     </content>
-                </Tab>
-                  <Tab text="Transactions">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #FF9600;">
-                           <children>
-                              <TableView fx:id="tableTransactions" layoutY="1.0" prefHeight="294.0" prefWidth="564.0" />
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </Tab>
-              </tabs>
-            </TabPane>
-            <Text fill="#00000066" layoutX="323.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Expense :" wrappingWidth="177.44140625">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text fx:id="txtTotalExpense" fill="#ff9600" layoutX="320.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" wrappingWidth="289.4414367675781">
-               <font>
-                  <Font size="64.0" />
-               </font>
-            </Text>
-         </children></AnchorPane>
-   </right>
+               </font></Button>
+                <Text fill="#2b3a67" layoutX="-14.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="219.57599258422852">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Text>
+                <Text fx:id="txtUserName" fill="#2b3a67" layoutX="-15.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user" textAlignment="CENTER" wrappingWidth="220.75880813598633">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+    </left>
+    <right>
+        <AnchorPane prefHeight="600.0" prefWidth="602.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+            <children>
+                <Text fill="#212738" layoutX="-7.0" layoutY="60.0" stroke="#60428600" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard" textAlignment="CENTER" wrappingWidth="239.3563690185547">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Text>
+                <Text fill="#00000066" layoutX="39.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Balance :" wrappingWidth="177.44140625">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Text>
+                <Text fx:id="txtTotalBalance" fill="#86e7b8" layoutX="34.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" wrappingWidth="529.4414367675781">
+                    <font>
+                        <Font size="64.0" />
+                    </font>
+                </Text>
+                <TabPane layoutX="20.0" layoutY="223.0" prefHeight="376.0" prefWidth="590.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Expense">
+                            <content>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <BarChart fx:id="chartExpense" layoutY="-2.0" prefHeight="320.0" prefWidth="589.0" title="Expense">
+                                            <xAxis>
+                                                <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                        </BarChart>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Income">
+                            <content>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <BarChart fx:id="chartIncome" prefHeight="298.0" prefWidth="566.0" title="Income">
+                                            <xAxis>
+                                                <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                        </BarChart>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Transactions">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <TableView fx:id="tableTransactions" layoutY="1.0" prefHeight="294.0" prefWidth="564.0" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+                <Text fill="#00000066" layoutX="323.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Expense :" wrappingWidth="177.44140625">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Text>
+                <Text fx:id="txtTotalExpense" fill="#ff4365" layoutX="320.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0.0" wrappingWidth="289.4414367675781">
+                    <font>
+                        <Font size="64.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+    </right>
 </BorderPane>

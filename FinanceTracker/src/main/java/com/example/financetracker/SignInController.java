@@ -1,31 +1,27 @@
 package com.example.financetracker;
 
-import directories.TransactionDirectory;
 import directories.UserDirectory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.fxml.LoadException;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.User;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SignInController implements Initializable{
-
-    private  UserDirectory userDirectory;
-
-
-    private  Stage stage;
+public class SignInController implements Initializable {
 
     User user;
+    private UserDirectory userDirectory;
+    private Stage stage;
     @FXML
     private Button button_login;
 
@@ -39,18 +35,19 @@ public class SignInController implements Initializable{
     @FXML
     private Button button_signup;
 
-    public SignInController(UserDirectory userDirectory, User user,Stage stage) {
+    public SignInController(UserDirectory userDirectory, User user, Stage stage) {
         this.userDirectory = userDirectory;
         this.stage = stage;
         this.user = user;
     }
-    private void  showDashboard(Stage stage,User user) throws IOException {
-        this.user= user;
+
+    private void showDashboard(Stage stage, User user) throws IOException {
+        this.user = user;
 
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MainDashboard.fxml"));
-            DashboardController controller = new DashboardController(userDirectory,user,stage);
+            DashboardController controller = new DashboardController(userDirectory, user, stage);
 
             loader.setController(controller);
 
@@ -58,8 +55,9 @@ public class SignInController implements Initializable{
 
 
             Scene scene = new Scene(root, 800, 600);
+            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
             stage.setScene(scene);
-            stage.setTitle("Money Manager");
+            stage.setTitle("Spend Wise");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -73,13 +71,13 @@ public class SignInController implements Initializable{
 
             @Override
             public void handle(ActionEvent event) {
-                    User user = userDirectory.login(tf_username.getText(), tf_password.getText());
-               if(user!=null){
-                   try {
-                       showDashboard(stage,user);
-                   } catch (IOException e) {
-                       e.printStackTrace();
-                   }
+                User user = userDirectory.login(tf_username.getText(), tf_password.getText());
+                if (user != null) {
+                    try {
+                        showDashboard(stage, user);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             }
@@ -94,7 +92,6 @@ public class SignInController implements Initializable{
             }
         });
     }
-
 
 
 }
