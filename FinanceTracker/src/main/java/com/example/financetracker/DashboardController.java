@@ -61,6 +61,7 @@ public class DashboardController implements Initializable {
         this.user = user;
         System.out.println("DashboardController->" + userDirectory + username);
 
+
     }
 
     public void showExpenseChart() {
@@ -298,11 +299,12 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        showExpenseChart();
+
         updateTotalBalance();
         updateTotalExpense();
         showIncomeChart();
         showTransactions();
+        showExpenseChart();
         txtUserName.setText(user.getName());
 
         transactionButton.setOnAction(

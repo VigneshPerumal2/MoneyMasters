@@ -52,7 +52,7 @@
                <tabs>
                   <Tab text="Income">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #C2EABA;">
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <Text layoutX="37.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="64.21630859375" />
                               <Text layoutX="34.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" wrappingWidth="60.21630859375" />
@@ -80,7 +80,7 @@
                   </Tab>
                   <Tab text="Expense">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #C2EABA;">
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <Text layoutX="37.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="64.21630859375" />
                               <Text layoutX="34.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" wrappingWidth="60.21630859375" />
@@ -108,7 +108,7 @@
                   </Tab>
                   <Tab text="Transfer">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #C2EABA;">
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <Text layoutX="37.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="64.21630859375" />
                               <Text layoutX="34.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" wrappingWidth="60.21630859375" />

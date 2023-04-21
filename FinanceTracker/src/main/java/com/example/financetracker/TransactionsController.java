@@ -426,7 +426,7 @@ public class TransactionsController implements Initializable {
 
         Date date1 = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
         userDirectory.getAccount(accountname, user).setAmount(userDirectory.getAccount(accountname, user).getAmount() + Double.parseDouble(amount));
-        Transaction transaction = new Transaction(Double.parseDouble(amount), userDirectory.getAccount(accountname, user), date1, incomecategory, incomedescription, income);
+        Transaction transaction = new Transaction(Double.parseDouble(amount), userDirectory.getAccount(accountname, user), date1, incomecategory, incomedescription, "Income");
         user.getTransactionDirectory().addNewTransaction(transaction);
         System.out.println(transaction.toString());
 
@@ -473,7 +473,7 @@ public class TransactionsController implements Initializable {
         }
         userDirectory.getAccount(accountname, user).setAmount(userDirectory.getAccount(accountname, user).getAmount() - Double.parseDouble(amount));
 
-        Transaction transaction = new Transaction(Double.parseDouble(amount), userDirectory.getAccount(accountname, user), date1, expensecategory, expensedescription, expense);
+        Transaction transaction = new Transaction(Double.parseDouble(amount), userDirectory.getAccount(accountname, user), date1, expensecategory, expensedescription, "Expense");
         user.getTransactionDirectory().addNewTransaction(transaction);
         System.out.println(transaction.toString());
 
