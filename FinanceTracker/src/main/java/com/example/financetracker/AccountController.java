@@ -129,6 +129,18 @@ public class AccountController implements Initializable {
 
                     }
                 });
+        buttonCancel.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+
+                        txtAmount.setText("");
+                        txtAccountName.setText("");
+                        txtNote.setText("");
+                        choiceboxType.setValue("");
+
+                    }
+                });
 
 
     }
@@ -215,9 +227,23 @@ public class AccountController implements Initializable {
         if (txtAmount.getText().isEmpty()) {
             valAmount.setText("Amount is required");
             val = false;
-        } else {
+        }
+        else {
+            try {
+                double value = Double.parseDouble(txtAmount.getText().toString());
+            } catch (NumberFormatException e) {
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Error");
+                alert.setContentText("Amount should be a number");
+                alert.showAndWait();
+                valAmount.setText("Amount should be a number");
+                val = false;
+            }
             valAmount.setText("*");
         }
+
         if (txtNote.getText().isEmpty()) {
             valNote.setText("Note is required");
             val = false;
