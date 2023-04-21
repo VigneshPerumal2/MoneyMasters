@@ -164,6 +164,13 @@ public class SignUpController implements Initializable {
 
     private boolean checkValidation(Label valUserName, Label valAge, Label valGender, Label valEmail, Label valPassword, Label valLocation, Label valPhoneNumber) {
         // TODO Auto-generated method stub
+        txtPhoneNumber.clear();
+        txtUsername.clear();
+        txtPassword.clear();
+        txtLocation.clear();
+        txtEmail.clear();
+        txtAge.clear();
+        rbmale.setSelected(true);
         boolean flag = true;
         if (txtUsername.getText().isEmpty()) {
             valUserName.setText("Please enter username");
