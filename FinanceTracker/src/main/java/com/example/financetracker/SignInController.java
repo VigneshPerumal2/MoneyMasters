@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.fxml.LoadException;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -45,18 +46,24 @@ public class SignInController implements Initializable{
     }
     private void  showDashboard(Stage stage,User user) throws IOException {
         this.user= user;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainDashboard.fxml"));
-        DashboardController controller = new DashboardController(userDirectory,user,stage);
-
-        loader.setController(controller);
-
-        Parent root = loader.load();
 
 
-        Scene scene = new Scene(root, 800, 600);
-        stage.setScene(scene);
-        stage.setTitle("Money Manager");
-        stage.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainDashboard.fxml"));
+            DashboardController controller = new DashboardController(userDirectory,user,stage);
+
+            loader.setController(controller);
+
+            Parent root = loader.load();
+
+
+            Scene scene = new Scene(root, 800, 600);
+            stage.setScene(scene);
+            stage.setTitle("Money Manager");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

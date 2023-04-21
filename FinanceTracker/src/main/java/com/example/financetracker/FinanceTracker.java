@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class FinanaceTracker extends Application {
+public class FinanceTracker extends Application {
 
     static UserDirectory userDirectory ;
     static User user;

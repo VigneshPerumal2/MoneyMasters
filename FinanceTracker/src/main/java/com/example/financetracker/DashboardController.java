@@ -15,8 +15,8 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Account;
@@ -26,10 +26,7 @@ import model.User;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.FileSystemNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DashboardController implements Initializable {
 
@@ -55,6 +52,9 @@ public class DashboardController implements Initializable {
 
     @FXML
     private BarChart<String, Number> chartIncome;
+
+    @FXML
+    private TableView<Transaction> tableTransactions;
 
     public UserDirectory userDirectory ;
 
@@ -102,20 +102,86 @@ public class DashboardController implements Initializable {
         yAxis.setLabel("Amount");
         // set the size of the chart
         chartExpense.setPrefSize(566, 350);
-        chartExpense.setLegendVisible(false);
+        chartExpense.setLegendVisible(true);
 
         // Create a new series for each category
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         for (Map.Entry<String, Double> entry : expensesByCategory.entrySet()) {
             String category = entry.getKey();
             Double amount = entry.getValue();
-            series.getData().add(new XYChart.Data<>(category, amount));
+            if (amount > 0) {
+                XYChart.Data<String, Number> data = new XYChart.Data<>(category, amount);
+
+                series.getData().add(data);
+            }
         }
         series.setName("Expenses");
 
         // Add series to chart and show stage
         ObservableList<XYChart.Series<String, Number>> data = FXCollections.observableArrayList(series);
         chartExpense.setData(data);
+
+    }
+
+    public void showIncomeChart() {
+
+        // create a map to store the income by account type
+        Map<String, Double> incomeByAccountType = new HashMap<>();
+        for (Account account : user.getUserAccounts()) {
+            if (account.getAmount() > 0) {
+                incomeByAccountType.put(account.getAccountType(), incomeByAccountType.getOrDefault(account.getAccountType(), 0.0) + account.getAmount());
+            }
+        }
+
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        chartIncome.setTitle("Income Chart");
+        xAxis.setLabel("Account Type");
+        yAxis.setLabel("Amount");
+        // set the size of the chart
+        chartIncome.setPrefSize(566, 350);
+        chartIncome.setLegendVisible(true);
+
+        // Create a new series for each account type
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        for (Map.Entry<String, Double> entry : incomeByAccountType.entrySet()) {
+            String accountType = entry.getKey();
+            Double amount = entry.getValue();
+            XYChart.Data<String, Number> data = new XYChart.Data<>(accountType, amount);
+            series.getData().add(data);
+        }
+        series.setName("Income");
+
+        // Add series to chart
+        ObservableList<XYChart.Series<String, Number>> data = FXCollections.observableArrayList(series);
+        chartIncome.setData(data);
+
+
+
+    }
+
+    public void showTransactions() {
+
+
+
+        // Create columns
+        TableColumn<Transaction, Date> dateCol = new TableColumn<>("Date");
+        TableColumn<Transaction, Double> amountCol = new TableColumn<>("Amount");
+        TableColumn<Transaction, String> noteCol = new TableColumn<>("Transactions Note");
+
+        // Set column values
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("transactionDate"));
+        amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        noteCol.setCellValueFactory(new PropertyValueFactory<>("note"));
+
+        // Add columns to table
+        tableTransactions.getColumns().add(dateCol);
+        tableTransactions.getColumns().add(amountCol);
+        tableTransactions.getColumns().add(noteCol);
+
+        // Populate table with transactions
+        ObservableList<Transaction> data = FXCollections.observableArrayList(user.getTransactionDirectory().getHistory());
+        tableTransactions.setItems(data);
 
     }
 
@@ -189,18 +255,7 @@ public class DashboardController implements Initializable {
 
     }
 
-    private void showStats() {
-        // TODO: Implement the code for showing the Stats section
-        showExpenseChart();
-    }
 
-    private void showBudget() {
-        // TODO: Implement the code for showing the Budget section
-    }
-
-    private void showNotes() {
-        // TODO: Implement the code for showing the Notes section
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -208,6 +263,8 @@ public class DashboardController implements Initializable {
         showExpenseChart();
         updateTotalBalance();
         updateTotalExpense();
+        showIncomeChart();
+        showTransactions();
         txtUserName.setText(user.getName());
 
         transactionButton.setOnAction(
