@@ -176,6 +176,15 @@ public class SignUpController implements Initializable{
 		txtEmail.clear();
 		txtAge.clear();
 		rbmale.setSelected(true);
+		valUserName.setText("*");
+		valPassword.setText("*");
+		valLocation.setText("*");
+		valEmail.setText("*");
+		valAge.setText("*");
+		valGender.setText("*");
+		valPhoneNumber.setText("*");
+
+
 
 		return true;
 	}
@@ -213,7 +222,7 @@ public class SignUpController implements Initializable{
 			flag=false;
 		}
 
-		if(txtPhoneNumber.getText().length()<10) {
+		if(txtPhoneNumber.getText().length()!=10) {
 			valPhoneNumber.setText("Please enter valid phone number");
 			flag=false;
 		}

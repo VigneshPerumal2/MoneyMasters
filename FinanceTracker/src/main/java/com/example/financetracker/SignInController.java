@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -71,11 +72,42 @@ public class SignInController implements Initializable {
 
             @Override
             public void handle(ActionEvent event) {
+
+                if(tf_username.getText().isEmpty())
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Username is empty");
+                    alert.setContentText("Please enter a username");
+                    alert.showAndWait();
+                    return;
+                }
+                if(tf_password.getText().isEmpty())
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Password is empty");
+                    alert.setContentText("Please enter a password");
+                    alert.showAndWait();
+                    return;
+                }
+
+
                 User user = userDirectory.login(tf_username.getText(), tf_password.getText());
+                if(user==null)
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Invalid Credentials");
+                    alert.setContentText("Please enter valid credentials");
+                    alert.showAndWait();
+                    return;
+                }
                 if (user != null) {
                     try {
                         showDashboard(stage, user);
                     } catch (IOException e) {
+
                         e.printStackTrace();
                     }
                 }
