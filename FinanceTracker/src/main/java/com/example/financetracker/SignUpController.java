@@ -96,168 +96,180 @@ public class SignUpController implements Initializable {
 //       }
 //    });
 //
-        buttonSignIn.setOnAction(new EventHandler<ActionEvent>() {
+		buttonSignIn.setOnAction(new EventHandler<ActionEvent>() {
 
-            @Override
-            public void handle(ActionEvent event) {
-                showDashboardLogin(stage);
+			@Override
+			public void handle(ActionEvent event) {
+				showDashboardLogin(stage);
 
-            }
-        });
-    }
-
-
-    private void showDashboardLogin(Stage stage) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
-        SignInController controller = new SignInController(userDirectory, user, stage);
-
-        loader.setController(controller);
-
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+			}
+		});
+	}
 
 
-        Scene scene = new Scene(root, 800, 600);
-        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+	private void showDashboardLogin(Stage stage) {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
+		SignInController controller = new SignInController(userDirectory,user,stage);
 
-        stage.setScene(scene);
-        stage.setTitle("Sign Manager");
-        stage.show();
-    }
+		loader.setController(controller);
 
-    private boolean saveUser(UserDirectory userDirectory, User user, String userName, String Location, String Phonenumber, String email, String age, String password, String gender) {
-        // TODO Auto-generated method stub
-
-        boolean val = checkValidation(valUserName, valAge, valGender, valEmail, valPassword, valLocation, valPhoneNumber);
-
-        if (val == false) {
-            return false;
-        }
-        Boolean val2 = checkUserPresent(userDirectory, email);
-        if (val2 == true) {
-            return false;
-        }
-        User user1 = new User(userName, Integer.parseInt(age), gender, email, password, Location, Long.parseLong(Phonenumber), new ArrayList<Account>(), new TransactionDirectory());
-        userDirectory.addNewUser(user1);
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText(null);
-        alert.setContentText("User added successfully");
-        alert.showAndWait();
+		Parent root = null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 
 
-        txtPhoneNumber.clear();
-        txtUsername.clear();
-        txtPassword.clear();
-        txtLocation.clear();
-        txtEmail.clear();
-        txtAge.clear();
-        rbmale.setSelected(true);
+		Scene scene = new Scene(root, 800, 600);
+		stage.setScene(scene);
+		stage.setTitle("Sign Manager");
+		stage.show();
+	}
 
-        return true;
-    }
+	private boolean saveUser(UserDirectory userDirectory, User user, String userName, String Location, String Phonenumber, String email, String age, String password, String gender) {
+		// TODO Auto-generated method stub
 
-    private boolean checkValidation(Label valUserName, Label valAge, Label valGender, Label valEmail, Label valPassword, Label valLocation, Label valPhoneNumber) {
-        // TODO Auto-generated method stub
+		boolean val=checkValidation(valUserName,valAge,valGender,valEmail,valPassword,valLocation,valPhoneNumber);
 
-        boolean flag = true;
-        if (txtUsername.getText().isEmpty()) {
-            valUserName.setText("Please enter username");
-            flag = false;
-        } else {
-            valUserName.setText("*");
-        }
-        if (txtPassword.getText().isEmpty()) {
-            valPassword.setText("Please enter password");
-            flag = false;
-        }
-        if (txtPassword.getText().length() < 8) {
-            valPassword.setText("Password should be atleast 8 characters");
-            flag = false;
-        } else {
-            valPassword.setText("*");
-        }
-        if (txtLocation.getText().isEmpty()) {
-            valLocation.setText("Please enter location");
-            flag = false;
-        } else {
-            valLocation.setText("*");
-        }
-        if (txtPhoneNumber.getText().isEmpty()) {
-            valPhoneNumber.setText("Please enter phone number");
-            flag = false;
-        }
+		if(val==false) {
+			return false;
+		}
+		Boolean val2=checkUserPresent(userDirectory,email);
+		if(val2==true) {
+			return false;
+		}
+		User user1=new User(userName,Integer.parseInt(age),gender,email,password,Location,Long.parseLong(Phonenumber),new ArrayList<Account>(),new TransactionDirectory());
+		userDirectory.addNewUser(user1);
 
-        if (txtPhoneNumber.getText().length() < 10) {
-            valPhoneNumber.setText("Please enter valid phone number");
-            flag = false;
-        } else {
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Information Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("User added successfully");
+		alert.showAndWait();
 
-            try {
-                Long val = Long.parseLong(txtPhoneNumber.getText().toString());
-            } catch (NumberFormatException e) {
 
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Error");
-                alert.setContentText("PhoneNumber should be a number");
-                alert.showAndWait();
-                valPhoneNumber.setText("PhoneNumber should be a number");
-                flag = false;
-            }
-            valLocation.setText("*");
-        }
-        if (txtEmail.getText().isEmpty()) {
-            valEmail.setText("Please enter email");
-            flag = false;
-        }
-        if (!txtEmail.getText().contains("@")) {
-            valEmail.setText("Please enter valid email");
-            flag = false;
-        } else {
-            valEmail.setText("*");
-        }
-        if (txtAge.getText().isEmpty() || Integer.parseInt(txtAge.getText().toString()) >= 100) {
-            valAge.setText("Please enter  valid age its between 0-99");
-            flag = false;
-        } else {
-            try {
-                Integer val = Integer.parseInt(txtAge.getText().toString());
-            } catch (NumberFormatException e) {
+		txtPhoneNumber.clear();
+		txtUsername.clear();
+		txtPassword.clear();
+		txtLocation.clear();
+		txtEmail.clear();
+		txtAge.clear();
+		rbmale.setSelected(true);
+		valUserName.setText("*");
+		valPassword.setText("*");
+		valLocation.setText("*");
+		valEmail.setText("*");
+		valAge.setText("*");
+		valGender.setText("*");
+		valPhoneNumber.setText("*");
 
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Error");
-                alert.setContentText("Age should be a number");
-                alert.showAndWait();
-                valAge.setText("Age should be a number");
-                flag = false;
-            }
-            valAge.setText("*");
 
-        }
 
-        return flag;
-    }
+		return true;
+	}
 
-    public boolean checkUserPresent(UserDirectory userDirectory, String email) {
-        // TODO Auto-generated method stub
-        for (User user : userDirectory.getHistory()) {
-            if (user.getEmailId().equals(email)) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Error");
-                alert.setContentText("User already present");
-                alert.showAndWait();
-                return true;
-            }
-        }
-        return false;
-    }
+	private boolean checkValidation(Label valUserName , Label valAge, Label valGender, Label valEmail, Label valPassword , Label valLocation , Label valPhoneNumber) {
+		// TODO Auto-generated method stub
+		boolean flag=true;
+		if(txtUsername.getText().isEmpty()) {
+			valUserName.setText("Please enter username");
+			flag=false;
+		}
+		else {
+			valUserName.setText("*");
+		}
+		if(txtPassword.getText().isEmpty()) {
+			valPassword.setText("Please enter password");
+			flag=false;
+		}
+		if(txtPassword.getText().length()<8) {
+			valPassword.setText("Password should be atleast 8 characters");
+			flag=false;
+		}
+		else {
+			valPassword.setText("*");
+		}
+		if(txtLocation.getText().isEmpty()) {
+			valLocation.setText("Please enter location");
+			flag=false;
+		}
+		else {
+			valLocation.setText("*");
+		}
+		if(txtPhoneNumber.getText().isEmpty()) {
+			valPhoneNumber.setText("Please enter phone number");
+			flag=false;
+		}
+
+		if(txtPhoneNumber.getText().length()!=10) {
+			valPhoneNumber.setText("Please enter valid phone number");
+			flag=false;
+		}
+		else {
+
+			try {
+				Long val = Long.parseLong(txtPhoneNumber.getText().toString());
+			} catch (NumberFormatException e) {
+
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setHeaderText("Error");
+				alert.setContentText("PhoneNumber should be a number");
+				alert.showAndWait();
+				valPhoneNumber.setText("PhoneNumber should be a number");
+				flag = false;
+			}
+			valLocation.setText("*");
+		}
+		if(txtEmail.getText().isEmpty()) {
+			valEmail.setText("Please enter email");
+			flag=false;
+		}
+		if(!txtEmail.getText().contains("@")) {
+			valEmail.setText("Please enter valid email");
+			flag=false;
+		}
+		else {
+			valEmail.setText("*");
+		}
+		if(txtAge.getText().isEmpty() || txtAge.getText().length()>3) {
+			valAge.setText("Please enter  valid age its between 0-99");
+			flag=false;
+		}
+		else {
+			try {
+				Integer val = Integer.parseInt(txtAge.getText().toString());
+			} catch (NumberFormatException e) {
+
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setHeaderText("Error");
+				alert.setContentText("Age should be a number");
+				alert.showAndWait();
+				valAge.setText("Age should be a number");
+				flag = false;
+			}
+			valAge.setText("*");
+
+		}
+
+		return flag;
+	}
+
+	public boolean checkUserPresent(UserDirectory userDirectory, String email) {
+		// TODO Auto-generated method stub
+		for(User user:userDirectory.getHistory()) {
+			if(user.getEmailId().equals(email)) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setHeaderText("Error");
+				alert.setContentText("User already present");
+				alert.showAndWait();
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

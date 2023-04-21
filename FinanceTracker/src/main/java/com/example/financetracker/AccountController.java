@@ -69,9 +69,11 @@ public class AccountController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         txtUserName.setText(user.getName());
-        for (Account account : user.getUserAccounts()) {
-            choiceboxType.getItems().add(account.getAccountType());
-        }
+        choiceboxType.getItems().add("Savings");
+        choiceboxType.getItems().add("Checking");
+        choiceboxType.getItems().add("Investment");
+        choiceboxType.getItems().add("Retirement");
+        choiceboxType.getItems().add("Credit Card");
 
         buttonAdd.setOnAction(new EventHandler<ActionEvent>() {
             @Override
