@@ -228,7 +228,7 @@ public class SignUpController implements Initializable {
         } else {
             valEmail.setText("*");
         }
-        if (txtAge.getText().isEmpty() || Integer.parseInt(txtAge.getText()) >= 100) {
+        if (txtAge.getText().isEmpty() || Integer.parseInt(txtAge.getText().toString()) >= 100) {
             valAge.setText("Please enter  valid age its between 0-99");
             flag = false;
         } else {
