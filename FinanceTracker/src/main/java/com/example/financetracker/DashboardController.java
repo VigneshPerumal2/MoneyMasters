@@ -145,7 +145,7 @@ public class DashboardController implements Initializable {
 
     private void showDashboardAccount(Stage stage) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Account.fxml"));
-        AccountController controller = new AccountController(userDirectory,stage,"Vignesh");
+        AccountController controller = new AccountController(userDirectory,user,stage,"Vignesh");
 
         loader.setController(controller);
 
