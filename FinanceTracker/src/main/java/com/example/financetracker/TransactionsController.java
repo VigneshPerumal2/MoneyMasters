@@ -125,6 +125,9 @@ public class TransactionsController implements Initializable {
     @FXML
     private Text txtUserName;
 
+    @FXML
+    private Button btnLogOut;
+
     public TransactionsController(UserDirectory userDirectory, User user, Stage stage) {
         this.userDirectory = userDirectory;
         this.stage = stage;
@@ -214,8 +217,39 @@ public class TransactionsController implements Initializable {
 
                 }
         );
+        btnLogOut.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+
+                        try {
+                            showLogInController(stage);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
 
 
+                    }
+                });
+
+
+    }
+
+    private void showLogInController(Stage stage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
+        SignInController controller = new SignInController(userDirectory, user, stage);
+
+        loader.setController(controller);
+
+        Parent root = loader.load();
+
+
+        Scene scene = new Scene(root, 800, 600);
+        // Add the CSS file to the scene's stylesheets
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setTitle("Spend Wise");
+        stage.show();
     }
 
     private boolean checkvalidationIncome(Label valIncomeDescription, Label valIncomeAmount, Label valIncomeCategory, Label valIncomeAccount, Label valIncomeDate, Label valIncomeNote) {

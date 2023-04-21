@@ -57,6 +57,9 @@ public class AccountController implements Initializable {
     @FXML
     private Text txtUserName;
 
+    @FXML
+    private Button btnLogOut;
+
     public AccountController(UserDirectory userDirectory, User user, Stage stage, String vignesh) {
         this.stage = stage;
         this.userDirectory = userDirectory;
@@ -110,8 +113,39 @@ public class AccountController implements Initializable {
 
                 }
         );
+        btnLogOut.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+
+                        try {
+                            showLogInController(stage);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
 
 
+                    }
+                });
+
+
+    }
+
+    private void showLogInController(Stage stage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
+        SignInController controller = new SignInController(userDirectory, user, stage);
+
+        loader.setController(controller);
+
+        Parent root = loader.load();
+
+
+        Scene scene = new Scene(root, 800, 600);
+        // Add the CSS file to the scene's stylesheets
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setTitle("Spend Wise");
+        stage.show();
     }
 
     private void showDashboard(Stage stage) throws IOException {
