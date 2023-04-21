@@ -14,15 +14,22 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <left>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #3490DC;" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="transactionButton" layoutX="-6.0" layoutY="279.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="209.0" style="-fx-background-color: #57A773;" text="Transactions" textFill="WHITE" />
-                <Button fx:id="btnLogOut" layoutX="47.0" layoutY="535.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="97.0" style="-fx-background-color: #b7094c; -fx-background-radius: 15;" text="Logout" textAlignment="CENTER" textFill="WHITE" />
-                <Button fx:id="accountButton" layoutX="-6.0" layoutY="310.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="209.0" style="-fx-background-color: #860975;" text="Accounts" textFill="WHITE" />
-                <Button fx:id="dashboardButton" layoutX="-11.0" layoutY="247.0" mnemonicParsing="false" onAction="#btnDashboard" prefHeight="31.0" prefWidth="214.0" style="-fx-background-color: #FFA733;" text="Dashboard" textFill="WHITE">
+                <Button fx:id="transactionButton" layoutX="-6.0" layoutY="279.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="209.0" style="-fx-background-color: #57A773;" text="Transactions" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font size="18.0" />
                </font></Button>
+                <Button fx:id="btnLogOut" layoutX="47.0" layoutY="535.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="97.0" style="-fx-background-color: #b7094c; -fx-background-radius: 15;" text="Logout" textAlignment="CENTER" textFill="WHITE" />
+                <Button fx:id="accountButton" layoutX="-6.0" layoutY="310.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="209.0" style="-fx-background-color: #860975;" text="Accounts" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+                <Button fx:id="dashboardButton" layoutX="-11.0" layoutY="247.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="214.0" style="-fx-background-color: #FFA733;" text="Dashboard" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Button>
                 <Text fill="#2b3a67" layoutX="-14.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="219.57599258422852">
                     <font>
                         <Font name="System Bold" size="24.0" />

@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Account;
 import model.Transaction;
@@ -39,6 +40,9 @@ public class TransactionsController implements Initializable {
     private Button buttonTransferCancel;
     @FXML
     private Button buttonTransferSave;
+
+    @FXML
+    private Button dashboardButton;
     @FXML
     private Button buttonTransaction;
     @FXML
@@ -118,6 +122,9 @@ public class TransactionsController implements Initializable {
     @FXML
     private Label valTransferTo;
 
+    @FXML
+    private Text txtUserName;
+
     public TransactionsController(UserDirectory userDirectory, User user, Stage stage) {
         this.userDirectory = userDirectory;
         this.stage = stage;
@@ -127,6 +134,7 @@ public class TransactionsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        txtUserName.setText(user.getName());
         for (Account userAccount : user.getUserAccounts()) {
             choiceboxExpenseAccount.getItems().add(userAccount.getAccountName().toString());
             choiceboxIncomeAcount.getItems().add(userAccount.getAccountName().toString());
@@ -181,6 +189,8 @@ public class TransactionsController implements Initializable {
                     loader.setController(accountController);
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
+                    scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
                     stage.setScene(scene);
                     stage.show();
                 } catch (IOException e) {
@@ -188,6 +198,22 @@ public class TransactionsController implements Initializable {
                 }
             }
         });
+
+        dashboardButton.setOnAction(
+
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        try {
+                            showDashboard(stage);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                    }
+
+                }
+        );
 
 
     }
@@ -438,6 +464,23 @@ public class TransactionsController implements Initializable {
         valExpenseNote.setText("*");
 
         return true;
+    }
+
+    private void showDashboard(Stage stage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainDashboard.fxml"));
+        DashboardController controller = new DashboardController(userDirectory, user, stage);
+
+        loader.setController(controller);
+
+        Parent root = loader.load();
+
+
+        Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
+        stage.setScene(scene);
+        stage.setTitle("Spend Wise");
+        stage.show();
     }
 
     private boolean checkValdationExpense(Label valExpenseDescription, Label valExpenseAmount, Label valExpenseCategory, Label valExpenseAccount, Label valExpenseDate, Label valExpenseNote) {

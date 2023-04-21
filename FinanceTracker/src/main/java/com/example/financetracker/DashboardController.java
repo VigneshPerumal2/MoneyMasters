@@ -38,7 +38,7 @@ public class DashboardController implements Initializable {
     String username;
     private Stage stage;
     @FXML
-    private Button transactionButton, accountButton, profileButton, btnLogOut, statsButton, budgetButton, notesButton;
+    private Button transactionButton, accountButton, dashboardButton, btnLogOut, statsButton, budgetButton, notesButton;
     @FXML
     private TabPane tabPane;
     @FXML
@@ -224,6 +224,8 @@ public class DashboardController implements Initializable {
 
 
         Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
         stage.setScene(scene);
         stage.setTitle("Transaction Manager");
         stage.show();
@@ -244,13 +246,14 @@ public class DashboardController implements Initializable {
 
 
         Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
         stage.setScene(scene);
         stage.setTitle("Account Manager");
         stage.show();
     }
 
     private void updateTotalBalance() {
-        // TODO: Fetch the total balance from the MySQL server and update the totalBalanceText
 
         double totalBalance = 0;
         for (Account account : user.getUserAccounts()) {
@@ -263,8 +266,6 @@ public class DashboardController implements Initializable {
     }
 
     private void updateTotalExpense() {
-        // TODO: Fetch the total balance from the MySQL server and update the totalBalanceText
-        // Example: totalBalanceText.setText(String.valueOf(fetchedBalance));
         double totalExpense = 0;
         for (Transaction transaction : user.getTransactionDirectory().getHistory()) {
             totalExpense += transaction.getAmount();

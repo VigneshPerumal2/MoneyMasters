@@ -11,38 +11,45 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <AnchorPane prefHeight="607.0" prefWidth="216.0" style="-fx-background-color: #3490dc;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="603.0" prefWidth="172.0" style="-fx-background-color: #3490dc;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="buttonTansaction" layoutX="16.0" layoutY="232.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="167.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="Transactions" />
-            <Button fx:id="buttonLogout" layoutY="551.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="203.0" style="-fx-background-color: #FF9600;" text="Logout" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="buttonAccount" layoutX="16.0" layoutY="288.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="167.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="Accounts" />
-            <Button layoutX="16.0" layoutY="346.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="167.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="Profile" />
-            <Text fill="#9ca3db" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="201.31648635864258">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
-            <Text fill="#9ca3db" layoutX="-1.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user" textAlignment="CENTER" wrappingWidth="201.31648635864258">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Text>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #3490DC;">
+               <children>
+                  <Button fx:id="buttonTansaction" layoutX="-6.0" layoutY="279.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="209.0" style="-fx-background-color: #57A773;" text="Transactions" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnLogOut" layoutX="47.0" layoutY="535.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="97.0" style="-fx-background-color: #b7094c; -fx-background-radius: 15;" text="Logout" textAlignment="CENTER" textFill="WHITE" />
+                  <Button fx:id="buttonAccount" layoutX="-6.0" layoutY="310.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="209.0" style="-fx-background-color: #860975;" text="Accounts" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="dashboardButton" layoutX="-11.0" layoutY="247.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="214.0" style="-fx-background-color: #FFA733;" text="Dashboard" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Text fill="#2b3a67" layoutX="-14.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="219.57599258422852">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="txtUserName" fill="#2b3a67" layoutX="-15.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user" textAlignment="CENTER" wrappingWidth="220.75880813598633">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane prefHeight="600.0" prefWidth="568.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="600.0" prefWidth="587.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="134.0" layoutX="19.0" layoutY="-53.0" stroke="#ffffff00" strokeType="OUTSIDE" width="593.0" />
-            <Text fill="#58a672" layoutX="17.0" layoutY="55.0" stroke="#60428600" strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts" textAlignment="CENTER" wrappingWidth="598.21630859375">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Text>
             <Text fill="#00000080" layoutX="125.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Name">
                <font>
                   <Font size="18.0" />
@@ -66,13 +73,18 @@
                </font>
             </Text>
             <TextField fx:id="txtNote" layoutX="272.0" layoutY="391.0" prefHeight="27.0" prefWidth="251.0" />
-            <Button fx:id="buttonAdd" layoutX="316.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="207.0" style="-fx-background-color: #86E7B8;" text="Add" />
+            <Button fx:id="buttonAdd" layoutX="316.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="207.0" style="-fx-background-color: #57A773;" text="Add" />
             <Text fx:id="valAccountName" fill="#d81e5b" layoutX="272.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" wrappingWidth="252.9831027984619" />
             <Text fx:id="valAmount" fill="#d81e5b" layoutX="270.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" wrappingWidth="252.9831027984619" />
             <Text fx:id="valNote" fill="#d81e5b" layoutX="270.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" wrappingWidth="252.9831027984619" />
-            <Button fx:id="buttonCancel" layoutX="92.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="207.0" style="-fx-background-color: #D81E5B;" text="Cancel" />
+            <Button fx:id="buttonCancel" layoutX="92.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="207.0" style="-fx-background-color: #FFA733;" text="Cancel" />
             <ChoiceBox fx:id="choiceboxType" layoutX="272.0" layoutY="246.0" prefWidth="150.0" />
             <Text fx:id="valAccountType" fill="#d81e5b" layoutX="441.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" wrappingWidth="83.98310279846191" />
+            <Text fill="#212738" layoutX="3.0" layoutY="70.0" stroke="#60428600" strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts" textAlignment="CENTER" wrappingWidth="239.3563690185547">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </right>

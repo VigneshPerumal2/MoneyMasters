@@ -5,39 +5,62 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="600.0" prefWidth="254.0" />
-      <AnchorPane prefHeight="600.0" prefWidth="603.0">
+      <AnchorPane prefHeight="600.0" prefWidth="799.0">
          <children>
-            <Label layoutX="40.0" layoutY="87.0" prefHeight="17.0" prefWidth="69.0" text="Usernname" />
-            <Label layoutX="75.0" layoutY="130.0" text="Age" />
-            <Label layoutX="60.0" layoutY="171.0" text="Gender" />
-            <Label layoutX="57.0" layoutY="220.0" prefHeight="17.0" prefWidth="57.0" text="EmailID" />
-            <Label layoutX="54.0" layoutY="257.0" text="password" />
-            <Label layoutX="71.0" layoutY="300.0" text="Location" />
-            <Label layoutX="48.0" layoutY="351.0" text="phonenumber" />
-            <TextField fx:id="txtUsername" layoutX="142.0" layoutY="83.0" />
+            <Label layoutX="60.0" layoutY="75.0" prefHeight="17.0" prefWidth="69.0" text="Usernname" textAlignment="RIGHT" />
+            <Label layoutX="75.0" layoutY="130.0" text="Age" textAlignment="RIGHT" />
+            <Label layoutX="60.0" layoutY="190.0" text="Gender" textAlignment="RIGHT" />
+            <Label layoutX="57.0" layoutY="241.0" prefHeight="17.0" prefWidth="57.0" text="EmailID" textAlignment="RIGHT" />
+            <Label layoutX="74.0" layoutY="300.0" text="password" textAlignment="RIGHT" />
+            <Label layoutX="83.0" layoutY="361.0" text="Location" textAlignment="RIGHT" />
+            <Label layoutX="49.0" layoutY="410.0" text="Phone Number" textAlignment="RIGHT" />
+            <TextField fx:id="txtUsername" layoutX="145.0" layoutY="72.0" />
             <TextField fx:id="txtAge" layoutX="142.0" layoutY="126.0" />
-            <RadioButton fx:id="rbmale" layoutX="142.0" layoutY="170.0" mnemonicParsing="false" text="Male" />
-            <RadioButton fx:id="rbfemale" layoutX="251.0" layoutY="170.0" mnemonicParsing="false" text="Female" />
-            <TextField fx:id="txtEmail" layoutX="142.0" layoutY="216.0" />
-            <PasswordField fx:id="txtPassword" layoutX="142.0" layoutY="262.0" />
-            <TextField fx:id="txtLocation" layoutX="142.0" layoutY="305.0" />
-            <TextField fx:id="txtPhoneNumber" layoutX="142.0" layoutY="356.0" />
-            <Button fx:id="buttonSignup" layoutX="133.0" layoutY="429.0" mnemonicParsing="false" text="SignUp" />
-            <Label fx:id="valUserName" layoutX="368.0" layoutY="87.0" text="*" />
-            <Label fx:id="valAge" layoutX="368.0" layoutY="130.0" text="*" />
-            <Label fx:id="valGender" layoutX="368.0" layoutY="163.0" text="*" />
-            <Label fx:id="valEmail" layoutX="368.0" layoutY="212.0" text="*" />
-            <Label fx:id="valPassword" layoutX="368.0" layoutY="267.0" text="*" />
-            <Label fx:id="valLocation" layoutX="368.0" layoutY="310.0" text="*" />
-            <Label fx:id="valPhoneNumber" layoutX="368.0" layoutY="361.0" text="*" />
-            <Button fx:id="buttonSignIn" layoutX="233.0" layoutY="430.0" mnemonicParsing="false" text="Signin" />
+            <RadioButton fx:id="rbmale" layoutX="142.0" layoutY="189.0" mnemonicParsing="false" text="Male" />
+            <RadioButton fx:id="rbfemale" layoutX="251.0" layoutY="189.0" mnemonicParsing="false" text="Female" />
+            <TextField fx:id="txtEmail" layoutX="142.0" layoutY="237.0" />
+            <PasswordField fx:id="txtPassword" layoutX="143.0" layoutY="295.0" />
+            <TextField fx:id="txtLocation" layoutX="144.0" layoutY="356.0" />
+            <TextField fx:id="txtPhoneNumber" layoutX="143.0" layoutY="415.0" />
+            <Button fx:id="buttonSignup" layoutX="98.0" layoutY="526.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="88.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #3490dc;" text="SignUp" textFill="#3490dc">
+               <font>
+                  <Font name="Poppins Bold" size="13.0" />
+               </font>
+            </Button>
+            <Label fx:id="valUserName" layoutX="144.0" layoutY="100.0" text="*" />
+            <Label fx:id="valAge" layoutX="138.0" layoutY="161.0" text="*" />
+            <Label fx:id="valGender" layoutX="355.0" layoutY="191.0" text="*" />
+            <Label fx:id="valEmail" layoutX="141.0" layoutY="269.0" text="*" />
+            <Label fx:id="valPassword" layoutX="140.0" layoutY="327.0" text="*" />
+            <Label fx:id="valLocation" layoutX="141.0" layoutY="388.0" text="*" />
+            <Label fx:id="valPhoneNumber" layoutX="139.0" layoutY="449.0" prefWidth="176.0" text="*" />
+            <Button fx:id="buttonSignIn" layoutX="208.0" layoutY="526.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="88.0" style="-fx-background-color: #FF9F1C;" text="Signin" textFill="WHITE">
+               <font>
+                  <Font name="Poppins Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="600.0" prefWidth="579.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <ImageView fitHeight="302.0" fitWidth="298.0" layoutX="8.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../pictures/78285-original-httpslottiefilescom24811-saving-money.gif" />
+               </image>
+            </ImageView>
+            <Label layoutX="11.0" layoutY="370.0" text="Spend Wise" textAlignment="CENTER" textFill="#3490dc">
+               <font>
+                  <Font name="Poppins ExtraBold Italic" size="48.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

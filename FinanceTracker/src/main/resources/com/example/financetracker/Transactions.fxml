@@ -1,28 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <AnchorPane prefHeight="607.0" prefWidth="195.0" style="-fx-background-color: #63458A;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #3490DC;">
          <children>
-            <Button fx:id="buttonTransaction" layoutX="16.0" layoutY="232.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="167.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="Transactions" />
-            <Button layoutY="551.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="203.0" style="-fx-background-color: #b7094c;" text="Logout" textAlignment="CENTER">
+            <Button fx:id="buttonTransaction" layoutX="-6.0" layoutY="279.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="209.0" style="-fx-background-color: #57A773;" text="Transactions" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="buttonAccount" layoutX="16.0" layoutY="288.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="167.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="Accounts" />
-            <Button fx:id="buttonProfile" layoutX="16.0" layoutY="346.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="167.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="Profile" />
-            <Text fill="#9ca3db" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="201.31648635864258">
+            <Button fx:id="btnLogOut" layoutX="47.0" layoutY="535.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="97.0" style="-fx-background-color: #b7094c; -fx-background-radius: 15;" text="Logout" textAlignment="CENTER" textFill="WHITE" />
+            <Button fx:id="buttonAccount" layoutX="-6.0" layoutY="310.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="209.0" style="-fx-background-color: #860975;" text="Accounts" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="dashboardButton" layoutX="-11.0" layoutY="247.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="214.0" style="-fx-background-color: #FFA733;" text="Dashboard" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Text fill="#2b3a67" layoutX="-14.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="219.57599258422852">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Text>
-            <Text fill="#9ca3db" layoutX="-1.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user" textAlignment="CENTER" wrappingWidth="201.31648635864258">
+            <Text fx:id="txtUserName" fill="#2b3a67" layoutX="-15.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user" textAlignment="CENTER" wrappingWidth="220.75880813598633">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -31,14 +46,8 @@
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane style="-fx-background-color: #E1FAF9;" BorderPane.alignment="CENTER">
+      <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#63458a" height="127.0" layoutX="-1.0" layoutY="-50.0" stroke="#ffffff00" strokeType="OUTSIDE" width="599.0" />
-            <Text fill="#ffffff66" layoutY="49.0" stroke="#60428600" strokeType="OUTSIDE" strokeWidth="0.0" text="Transactions" textAlignment="CENTER" wrappingWidth="597.21630859375">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Text>
             <TabPane layoutX="13.0" layoutY="126.0" prefHeight="448.0" prefWidth="572.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab text="Income">
@@ -53,8 +62,8 @@
                               <Text layoutX="29.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="74.21630859375" />
                               <TextField fx:id="txtIncomeNote" layoutX="139.0" layoutY="173.0" prefHeight="27.0" prefWidth="136.0" />
                               <TextField fx:id="txtIncomeDescription" layoutX="142.0" layoutY="212.0" prefHeight="27.0" prefWidth="136.0" />
-                              <Button fx:id="buttonIncomeCancel" layoutX="90.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="CANCEL" />
-                              <Button fx:id="buttonIncomeSave" layoutX="271.0" layoutY="286.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="SAVE" textFill="#7c2b2b" />
+                              <Button fx:id="buttonIncomeCancel" layoutX="90.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #FFA733; -fx-background-radius: 10;" text="CANCEL" />
+                              <Button fx:id="buttonIncomeSave" layoutX="271.0" layoutY="286.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="SAVE" textFill="#3490dc" />
                               <ComboBox fx:id="choiceboxIncomeAcount" layoutX="135.0" layoutY="58.0" prefWidth="150.0" />
                               <ComboBox fx:id="choiceboxIncomeCategory" layoutX="135.0" layoutY="97.0" prefWidth="150.0" />
                               <TextField fx:id="txtIncomeAmount" layoutX="134.0" layoutY="136.0" prefHeight="26.0" prefWidth="145.0" />
@@ -83,7 +92,7 @@
                               <TextField fx:id="txtExpenseAmount" layoutX="142.0" layoutY="121.0" prefHeight="27.0" prefWidth="135.0" />
                               <TextField fx:id="txtExpenseNote" layoutX="141.0" layoutY="158.0" prefHeight="27.0" prefWidth="136.0" />
                               <TextField fx:id="txtExpenseDescription" layoutX="142.0" layoutY="199.0" prefHeight="27.0" prefWidth="136.0" />
-                              <Button fx:id="buttonExpenseCancel" layoutX="90.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="CANCEL" />
+                              <Button fx:id="buttonExpenseCancel" layoutX="90.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #FFA733; -fx-background-radius: 10;" text="CANCEL" />
                               <Button fx:id="buttonSaveExpense" layoutX="271.0" layoutY="286.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="SAVE" textFill="#7c2b2b" />
                               <ComboBox fx:id="choiceboxExpenseAccount" layoutX="142.0" layoutY="58.0" prefWidth="150.0" />
                               <ComboBox fx:id="choiceboxExpenseCategory" layoutX="142.0" layoutY="97.0" prefWidth="150.0" />
@@ -111,7 +120,7 @@
                               <TextField fx:id="txtTransferAmount" layoutX="133.0" layoutY="135.0" prefHeight="27.0" prefWidth="135.0" />
                               <TextField fx:id="txtTransferNote" layoutX="133.0" layoutY="158.0" prefHeight="14.0" prefWidth="141.0" />
                               <TextField fx:id="txtTransferDescription" layoutX="131.0" layoutY="191.0" prefHeight="27.0" prefWidth="144.0" />
-                              <Button fx:id="buttonTransferCancel" layoutX="90.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="CANCEL" />
+                              <Button fx:id="buttonTransferCancel" layoutX="90.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #FFA733; -fx-background-radius: 10;" text="CANCEL" />
                               <Button fx:id="buttonTransferSave" layoutX="251.0" layoutY="287.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #0AD3FF; -fx-background-radius: 10;" text="SAVE" textFill="#7c2b2b" />
                               <ComboBox fx:id="choiceBoxTransferFrom" layoutX="125.0" layoutY="59.0" prefWidth="150.0" />
                               <ComboBox fx:id="choiceBoxTransferTo" layoutX="125.0" layoutY="97.0" prefWidth="150.0" />
@@ -127,6 +136,11 @@
                   </Tab>
                </tabs>
             </TabPane>
+            <Text fill="#212738" layoutX="10.0" layoutY="68.0" stroke="#60428600" strokeType="OUTSIDE" strokeWidth="0.0" text="Transactions" textAlignment="CENTER" wrappingWidth="239.3563690185547">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </center>
