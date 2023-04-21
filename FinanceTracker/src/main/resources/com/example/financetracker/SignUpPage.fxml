@@ -35,13 +35,13 @@
                   <Font name="Poppins Bold" size="13.0" />
                </font>
             </Button>
-            <Label fx:id="valUserName" layoutX="144.0" layoutY="100.0" text="*" textFill="RED" />
-            <Label fx:id="valAge" layoutX="144.0" layoutY="161.0" text="*" textFill="RED" />
-            <Label fx:id="valGender" layoutX="144.0" layoutY="216.0" text="*" textFill="RED" />
-            <Label fx:id="valEmail" layoutX="141.0" layoutY="269.0" text="*" textFill="RED" />
-            <Label fx:id="valPassword" layoutX="140.0" layoutY="327.0" text="*" textFill="RED" />
-            <Label fx:id="valLocation" layoutX="141.0" layoutY="388.0" text="*" textFill="RED" />
-            <Label fx:id="valPhoneNumber" layoutX="139.0" layoutY="449.0" prefWidth="176.0" text="*" textFill="RED" />
+            <Label fx:id="valUserName" layoutX="144.0" layoutY="100.0" prefHeight="17.0" prefWidth="337.0" text="*" textFill="RED" />
+            <Label fx:id="valAge" layoutX="144.0" layoutY="161.0" prefHeight="17.0" prefWidth="337.0" text="*" textFill="RED" />
+            <Label fx:id="valGender" layoutX="144.0" layoutY="216.0" prefHeight="17.0" prefWidth="335.0" text="*" textFill="RED" />
+            <Label fx:id="valEmail" layoutX="141.0" layoutY="269.0" prefHeight="17.0" prefWidth="345.0" text="*" textFill="RED" />
+            <Label fx:id="valPassword" layoutX="140.0" layoutY="327.0" prefHeight="17.0" prefWidth="343.0" text="*" textFill="RED" />
+            <Label fx:id="valLocation" layoutX="141.0" layoutY="388.0" prefHeight="17.0" prefWidth="342.0" text="*" textFill="RED" />
+            <Label fx:id="valPhoneNumber" layoutX="139.0" layoutY="449.0" prefHeight="17.0" prefWidth="349.0" text="*" textFill="RED" />
             <Button fx:id="buttonSignIn" layoutX="208.0" layoutY="526.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="88.0" style="-fx-background-color: #FF9F1C;" text="Sign In" textFill="WHITE">
                <font>
                   <Font name="Poppins Bold" size="14.0" />

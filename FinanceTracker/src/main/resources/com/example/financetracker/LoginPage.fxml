@@ -18,7 +18,7 @@
                <font>
                   <Font name="Poppins Regular" size="24.0" />
                </font></Label>
-            <Label layoutX="27.0" layoutY="236.0" text="Username" textFill="WHITE">
+            <Label layoutX="27.0" layoutY="236.0" text="Email Id" textFill="WHITE">
                <font>
                   <Font name="Poppins Bold" size="14.0" />
                </font></Label>
