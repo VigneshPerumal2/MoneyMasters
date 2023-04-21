@@ -127,7 +127,7 @@ public class SignInController implements Initializable {
 
     private void showDashboardSignUp(Stage stage) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUpPage.fxml"));
-        SignUpController controller = new SignUpController(userDirectory,user,stage);
+        SignUpController controller = new SignUpController(userDirectory, user, stage);
 
         loader.setController(controller);
 
@@ -141,10 +141,9 @@ public class SignInController implements Initializable {
 
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
-        stage.setTitle("Signup Manager");
+        stage.setTitle("Spend Wise");
         stage.show();
     }
-
 
 
 }

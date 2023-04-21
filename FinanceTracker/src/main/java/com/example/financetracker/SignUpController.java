@@ -10,10 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Account;
 import model.User;
@@ -23,89 +19,73 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class SignUpController implements Initializable{
+public class SignUpController implements Initializable {
 
-	@FXML
-	private Button buttonSignIn;
-	@FXML
-	private Button buttonSignup;
+    UserDirectory userDirectory;
+    User user;
+    Stage stage;
+    @FXML
+    private Button buttonSignIn;
+    @FXML
+    private Button buttonSignup;
+    @FXML
+    private RadioButton rbfemale;
+    @FXML
+    private RadioButton rbmale;
+    @FXML
+    private TextField txtAge;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private TextField txtLocation;
+    @FXML
+    private PasswordField txtPassword;
+    @FXML
+    private TextField txtPhoneNumber;
+    @FXML
+    private Label valAge;
+    @FXML
+    private Label valEmail;
+    @FXML
+    private Label valGender;
+    @FXML
+    private Label valLocation;
+    @FXML
+    private Label valPassword;
+    @FXML
+    private Label valUserName;
+    @FXML
+    private TextField txtUsername;
+    @FXML
+    private Label valPhoneNumber;
 
-	@FXML
-	private RadioButton rbfemale;
+    public SignUpController(UserDirectory userDirectory, User user, Stage stage) {
+        this.userDirectory = userDirectory;
+        this.stage = stage;
+        this.user = user;
+    }
 
-	@FXML
-	private RadioButton rbmale;
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        // TODO Auto-generated method stub
 
-	@FXML
-	private TextField txtAge;
+        ToggleGroup toggleGroup = new ToggleGroup();
+        rbmale.setToggleGroup(toggleGroup);
+        rbfemale.setToggleGroup(toggleGroup);
 
-	@FXML
-	private TextField txtEmail;
+        rbmale.setSelected(true);
 
-	@FXML
-	private TextField txtLocation;
+        buttonSignup.setOnAction(new EventHandler<ActionEvent>() {
 
-	@FXML
-	private PasswordField txtPassword;
+            @Override
+            public void handle(ActionEvent event) {
 
-	@FXML
-	private TextField txtPhoneNumber;
+                String toggleName = ((RadioButton) toggleGroup.getSelectedToggle()).getText();
 
+                boolean val = saveUser(userDirectory, user, txtUsername.getText(), txtLocation.getText(), txtPhoneNumber.getText(), txtEmail.getText(), txtAge.getText(), txtPassword.getText(), toggleName);
 
-	@FXML
-	private Label valAge;
-
-	@FXML
-	private Label valEmail;
-
-	@FXML
-	private Label valGender;
-
-	@FXML
-	private Label valLocation;
-
-	@FXML
-	private Label valPassword;
-
-	@FXML
-	private Label valUserName;
-
-
-	@FXML
-	private TextField txtUsername;
-
-	@FXML
-	private Label valPhoneNumber;
-	UserDirectory userDirectory;
-	User user;
-
-	Stage stage;
-	public SignUpController(UserDirectory userDirectory, User user, Stage stage) {
-		this.userDirectory = userDirectory;
-		this.stage = stage;
-		this.user = user;
-	}
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-
-		ToggleGroup toggleGroup=new ToggleGroup();
-		rbmale.setToggleGroup(toggleGroup);
-		rbfemale.setToggleGroup(toggleGroup);
-
-		rbmale.setSelected(true);
-
-		buttonSignup.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-
-				String toggleName=((RadioButton) toggleGroup.getSelectedToggle()).getText();
-
-				boolean val = saveUser(userDirectory, user, txtUsername.getText(), txtLocation.getText(), txtPhoneNumber.getText(), txtEmail.getText(), txtAge.getText(), txtPassword.getText(), toggleName);
-
-			}
-		} );
+            }
+        });
 
 //    button_login.setOnAction(new EventHandler<ActionEvent>() {
 //
