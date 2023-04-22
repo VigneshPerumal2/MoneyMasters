@@ -232,6 +232,43 @@ public class TransactionsController implements Initializable {
                     }
                 });
 
+        buttonExpenseCancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                txtExpenseDescription.setText("");
+                txtExpenseAmount.setText("");
+                txtExpenseNote.setText("");
+                choiceboxExpenseCategory.setValue(null);
+                choiceboxExpenseAccount.setValue(null);
+                dateExpense.setValue(null);
+            }
+        });
+
+        buttonIncomeCancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                txtIncomeDescription.setText("");
+                txtIncomeAmount.setText("");
+                txtIncomeNote.setText("");
+                choiceboxIncomeCategory.setValue(null);
+                choiceboxIncomeAcount.setValue(null);
+                dateIncome.setValue(null);
+            }
+        });
+
+        buttonTransferCancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                txtTransferDescription.setText("");
+                txtTransferAmount.setText("");
+                txtTransferNote.setText("");
+                choiceBoxTransferFrom.setValue(null);
+                choiceBoxTransferTo.setValue(null);
+                dateTransfer.setValue(null);
+            }
+        });
+
+
 
     }
 

@@ -237,9 +237,21 @@ public class SignUpController implements Initializable {
 			valAge.setText("Please enter  valid age its between 0-99");
 			flag=false;
 		}
+
 		else {
 			try {
 				Integer val = Integer.parseInt(txtAge.getText().toString());
+				if(val>100)
+				{
+					valAge.setText("Please enter valid age");
+					flag=false;
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.setTitle("Error");
+					alert.setHeaderText("Error");
+					alert.setContentText("Please enter valid age between 0-100");
+					alert.showAndWait();
+				}
+
 			} catch (NumberFormatException e) {
 
 				Alert alert = new Alert(Alert.AlertType.ERROR);
