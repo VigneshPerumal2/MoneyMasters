@@ -269,6 +269,7 @@ public class DashboardController implements Initializable {
     private void updateTotalExpense() {
         double totalExpense = 0;
         for (Transaction transaction : user.getTransactionDirectory().getHistory()) {
+            if(transaction.getTransactionType().equals("Expense"))
             totalExpense += transaction.getAmount();
         }
 
